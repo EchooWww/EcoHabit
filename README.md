@@ -6,7 +6,7 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* Azura L
+* Azura L - Today is wednesday
 * Echo W - I hate morning buses TT
 * Kalvin L - Excited to save the environment
 	
