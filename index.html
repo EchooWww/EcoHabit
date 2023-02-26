@@ -1,73 +1,244 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <title>My BCIT Project</title>
-  <meta name="comp1800 template" content="My 1800 App" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Required meta tags -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    .todo-list {
+      background: #fff;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 20pt;
+      margin: auto;
+      padding: 0.5em 1em;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+    }
 
-  <!-- Bootstrap Library CSS CDN go here -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- Boostrap Library JS CDN  go here -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+    .todo {
+      display: block;
+      position: relative;
+      padding: 1em 1em 1em 16%;
+      margin: 0 auto;
+      cursor: pointer;
+      border-bottom: solid 1px #ddd;
+    }
 
-  <!-- Other libraries go here -->
+    .todo:last-child {
+      border-bottom: none;
+    }
 
-  <!-- Link to styles of your own -->
-  <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    .todo__state {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .todo__text {
+      color: #6096B4;
+      transition: all 0.4s linear 0.4s;
+    }
+
+    .todo__icon {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 60%;
+      height: auto;
+      margin: auto;
+      fill: none;
+      stroke: #27fdc7;
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .todo__line,
+    .todo__box,
+    .todo__check {
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.9, 0, 0.5, 1);
+    }
+
+    .todo__circle {
+      stroke: #27fdc7;
+      stroke-dasharray: 1 6;
+      stroke-width: 0;
+      transform-origin: 13.5px 12.5px;
+      transform: scale(0.4) rotate(0deg);
+      animation: none 0.8s linear;
+    }
+
+    @keyframes explode {
+      .todo__circle 30% {
+        stroke-width: 3;
+        stroke-opacity: 1;
+        transform: scale(0.8) rotate(40deg);
+      }
+
+      .todo__circle 100% {
+        stroke-width: 0;
+        stroke-opacity: 0;
+        transform: scale(1.1) rotate(60deg);
+      }
+    }
+
+    .todo__box {
+      stroke-dasharray: 56.1053, 56.1053;
+      stroke-dashoffset: 0;
+      transition-delay: 0.16s;
+    }
+
+    .todo__check {
+      stroke: #27fdc7;
+      stroke-dasharray: 9.8995, 9.8995;
+      stroke-dashoffset: 9.8995;
+      transition-duration: 0.32s;
+    }
+
+    .todo__line {
+      stroke-dasharray: 168, 1684;
+      stroke-dashoffset: 168;
+    }
+
+    .todo__circle {
+      animation-delay: 0.56s;
+      animation-duration: 0.56s;
+    }
+
+    .todo__state:checked~.todo__text {
+      transition-delay: 0s;
+      color: #93BFCF;
+      opacity: 0.6;
+    }
+
+    .todo__state:checked~.todo__icon .todo__box {
+      stroke-dashoffset: 56.1053;
+      transition-delay: 0s;
+    }
+
+    .todo__state:checked~.todo__icon .todo__line {
+      stroke-dashoffset: -8;
+    }
+
+    .todo__state:checked~.todo__icon .todo__check {
+      stroke-dashoffset: 0;
+      transition-delay: 0.48s;
+    }
+
+    .todo__state:checked~.todo__icon .todo__circle {
+      animation-name: explode;
+    }
+  </style>
 </head>
 
 <body>
-  <!------------------------------>
-  <!-- Your HTML Layout go here -->
-  <!------------------------------>
+  <div class="body-container">
+    <img src="./images/polarbear.gif" width="100%">
+    <svg viewBox="0 0 0 0" style="position: absolute; z-index: -1; opacity: 0;">
+      <defs>
+        <linearGradient id="boxGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="25" y2="25">
+          <stop offset="0%" stop-color="#27FDC7" />
+          <stop offset="100%" stop-color="#0FC0F5" />
+        </linearGradient>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">EcoHabit</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Personalize Habits</a>
-          <a class="nav-link" href="#">Learn More</a>
-          <a class="nav-link" href="#">Profile Settings</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+        <linearGradient id="lineGradient">
+          <stop offset="0%" stop-color="#0FC0F5" />
+          <stop offset="100%" stop-color="#27FDC7" />
+        </linearGradient>
 
-  <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4"
-      src="http://media3.s-nbcnews.com/i/streams/2014/February/140225/2D11741327-105187-lisa-granshawAAEA3BA7-DBD0-2809-3D75-A303123C3B8F.jpg"
-      alt="" height="200">
-    <h1 class="display-5 fw-bold">Join Ecohabit!</h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">Join us to track your eco-friendly habits now to mitigate the worsening of extreme
-        weather. Every action matters!
-      </p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Start Tracking</button>
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Customize</button>
-      </div>
+        <path id="todo__line" stroke="url(#lineGradient)" d="M21 12.3h168v0.1z"></path>
+        <path id="todo__box" stroke="url(#boxGradient)"
+          d="M21 12.7v5c0 1.3-1 2.3-2.3 2.3H8.3C7 20 6 19 6 17.7V7.3C6 6 7 5 8.3 5h10.4C20 5 21 6 21 7.3v5.4"></path>
+        <path id="todo__check" stroke="url(#boxGradient)" d="M10 13l2 2 5-5"></path>
+        <circle id="todo__circle" cx="13.5" cy="12.5" r="10"></circle>
+      </defs>
+    </svg>
+    <div class="todo-list">
+      <label class="todo">
+        <input class="todo__state" type="checkbox" />
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 25"
+          class="todo__icon">
+          <use xlink:href="#todo__line" class="todo__line"></use>
+          <use xlink:href="#todo__box" class="todo__box"></use>
+          <use xlink:href="#todo__check" class="todo__check"></use>
+          <use xlink:href="#todo__circle" class="todo__circle"></use>
+        </svg>
+
+        <div class="todo__text">Ride a bike</div>
+
+      </label>
+
+      <label class="todo">
+
+        <input class="todo__state" type="checkbox" />
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 25"
+          class="todo__icon">
+          <use xlink:href="#todo__line" class="todo__line"></use>
+          <use xlink:href="#todo__box" class="todo__box"></use>
+          <use xlink:href="#todo__check" class="todo__check"></use>
+          <use xlink:href="#todo__circle" class="todo__circle"></use>
+        </svg>
+
+        <div class="todo__text">Eat less meat</div>
+
+      </label>
+
+      <label class="todo">
+        <input class="todo__state" type="checkbox" />
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 25"
+          class="todo__icon">
+          <use xlink:href="#todo__line" class="todo__line"></use>
+          <use xlink:href="#todo__box" class="todo__box"></use>
+          <use xlink:href="#todo__check" class="todo__check"></use>
+          <use xlink:href="#todo__circle" class="todo__circle"></use>
+        </svg>
+
+        <div class="todo__text">Do recycling</div>
+      </label>
+
+      <label class="todo">
+        <input class="todo__state" type="checkbox" />
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 25"
+          class="todo__icon">
+          <use xlink:href="#todo__line" class="todo__line"></use>
+          <use xlink:href="#todo__box" class="todo__box"></use>
+          <use xlink:href="#todo__check" class="todo__check"></use>
+          <use xlink:href="#todo__circle" class="todo__circle"></use>
+        </svg>
+
+        <div class="todo__text">Use reusable bags</div>
+      </label>
+
+      <label class="todo">
+        <input class="todo__state" type="checkbox" />
+
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 25"
+          class="todo__icon">
+          <use xlink:href="#todo__line" class="todo__line"></use>
+          <use xlink:href="#todo__box" class="todo__box"></use>
+          <use xlink:href="#todo__check" class="todo__check"></use>
+          <use xlink:href="#todo__circle" class="todo__circle"></use>
+        </svg>
+
+        <div class="todo__text">Save water</div>
+      </label>
+
     </div>
+
+    <nav id="navbarPlaceholder"></nav>
+    <nav id="footerPlaceholder"></nav>
+
+    <script src="./scripts/skeleton.js"></script>
+    <script src="https://codepen.io/shshaw/pen/epmrgO"></script>
   </div>
-
-  <!---------------------------------------------->
-  <!-- Your own JavaScript functions go here    -->
-  <!---------------------------------------------->
-
-  <!-- Link to scripts of your own -->
-  <!-- <script src="./scripts/script.js"></script> -->
 </body>
 
 </html>
