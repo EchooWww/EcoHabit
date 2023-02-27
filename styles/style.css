@@ -10,3 +10,29 @@
   border-radius: 50%;
   height: 70px;
 }
+
+.d-block {
+  border-radius: 50%;
+  width: 150px;
+  height: auto;
+}
+
+#index-spacer-block {
+  display: block;
+  height: 24vh;
+}
+
+#index-landing-page {
+  padding: 10%;
+}
+
+#index-heading1 {
+  font-weight: bold;
+  font-size: 50pt;
+  color:#393D47;
+}
+
+#index-heading2 {
+  font-size: 26pt;
+  color:rgb(104, 104, 104);
+}
