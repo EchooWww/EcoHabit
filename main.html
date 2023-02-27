@@ -4,10 +4,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="./styles/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <style>
+    body {
+      width: 100vw;
+    }
+
+    .body-container img {
+      width: 100%;
+    }
+
     .todo-list {
       background: #fff;
       font-family: 'Permanent Marker', cursive;
@@ -138,7 +147,7 @@
 <body>
   <nav id="headerPlaceholder"></nav>
   <div class="body-container">
-    <img src="./images/polarbear.gif" width="100%">
+    <img src="./images/polarbear.gif">
     <svg viewBox="0 0 0 0" style="position: absolute; z-index: -1; opacity: 0;">
       <defs>
         <linearGradient id="boxGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="25" y2="25">
