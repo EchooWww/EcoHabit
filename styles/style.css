@@ -232,3 +232,17 @@
     /* Sidebar end */
 
     /* Navigation End */
+
+
+
+
+    /* learn more */
+    #body-container {
+      margin: 20% 0% 20%;
+  }
+
+  .card {
+      padding: 20px;
+  }
+  
+    /* learn more end*/
