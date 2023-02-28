@@ -140,12 +140,6 @@ input[type="checkbox"]:checked~#sidebarMenu {
   transform: translateX(0);
 }
 
-input[type=checkbox] {
-  transition: all 0.3s;
-  box-sizing: border-box;
-  display: none;
-}
-
 .sidebarIconToggle {
   transition: all 0.3s;
   box-sizing: border-box;
@@ -243,7 +237,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 
 /*------------------------------*/
-/*------------Main------------*/
+/*-------------Main-------------*/
 /*------------------------------*/
 .body-container>img {
   width: 100%;
@@ -374,7 +368,26 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   animation-name: explode;
 }
 
-/* learn more */
+/*------------------------------*/
+/*-------------List-------------*/
+/*------------------------------*/
+.form-floating {
+  margin-top: 90px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#list-page-items {
+  width: 300px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+/*------------------------------*/
+/*----------Learn More----------*/
+/*------------------------------*/
 #body-container {
   margin: 20% 0% 20%;
 }
@@ -384,3 +397,4 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 }
 
 /* learn more end*/
+
