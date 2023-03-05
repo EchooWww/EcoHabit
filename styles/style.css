@@ -388,12 +388,31 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   margin-right: auto;
 }
 
+/*------------------------------*/
+/*-------------List-------------*/
+/*------------------------------*/
+#list-title {
+  background: #fff;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 30pt;
+  margin: auto;
+  padding: 0.5em 1em;
+  text-align: center;
+  color: #393D47;
+}
+
+#list-container {
+  font-size: 20pt;
+  color: #6096B4;
+}
+
 
 /*------------------------------*/
 /*----------Learn More----------*/
 /*------------------------------*/
-#body-container {
+#learnmore-container {
   margin: 20% 0% 20%;
+  text-align: center;
 }
 
 .card {

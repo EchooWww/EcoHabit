@@ -27,6 +27,13 @@
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+  <!------------------------------------------>
+  <!-------- External fonts go here ---------->
+  <!------------------------------------------>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
   <!-------------------------------------------->
   <!-- Other libraries and styles of your own -->
   <!-------------------------------------------->
@@ -37,36 +44,48 @@
 <body>
   <!-- our own navbar goes here -->
   <nav id="headerPlaceholder"></nav>
-  <div class="body-container">
-    <h1>Customize Your Habits</h1>
+  <div class="body-container" id="list-container">
+    <h1 id="list-title">Customize Your Habit List!</h1>
     <ul id="habit-list">
       <!-- Habit items will be added dynamically with JavaScript -->
     </ul>
-    <button id="add-habit">Add Habit</button>
+    <button id="add-habit" class="btn btn-primary btn-lg btn-block">Add Habit</button>
+    <button id="save-changes" class=" btn btn-primary btn-lg btn-block">Save Changes</button>
+
   </div>
 
   <nav id="navbarPlaceholder"></nav>
   <script>
     const habitList = document.querySelector('#habit-list');
     const addHabitButton = document.querySelector('#add-habit');
-
-    // Add event listener for the Add Habit button
-    addHabitButton.addEventListener('click', () => {
-      const habitName = prompt("Enter a name for the new habit:");
-      if (habitName) {
-        addHabitItem(habitName);
-      }
-    });
+    const saveChangesBtn = document.getElementById("save-changes");
 
     // Add a habit item to the list
     function addHabitItem(name) {
       const habitItem = document.createElement('li');
       habitItem.textContent = name;
+      // Add event listener for the Add Habit button
+      addHabitButton.addEventListener('click', () => {
+        const habitName = prompt("Enter a name for the new habit:");
+        if (habitName) {
+          addHabitItem(habitName);
+        }
+      });
 
+
+      // Add event listener for the Delete Habit button, show a confirmation popup and only proceed with deletion if the user confirms.
       const deleteButton = document.createElement('button');
-      deleteButton.textContent = '-';
+      deleteButton.classList.add('btn', 'btn-light', 'btn-lg');
+      deleteButton.textContent = 'remove';
       deleteButton.addEventListener('click', () => {
-        habitList.removeChild(habitItem);
+        const confirmDelete = confirm(`Are you sure to remove ${name} from your habit list?`);
+        if (confirmDelete) {
+          habitChanges.push({
+            type: 'remove',
+            name: name
+          });
+          habitList.removeChild(habitItem);
+        }
       });
       habitItem.appendChild(deleteButton);
 
@@ -74,12 +93,21 @@
     }
 
     // Add some default habits to the list
-    addHabitItem("Drink water");
-    addHabitItem("Exercise");
-    addHabitItem("Read for 30 minutes");
+    addHabitItem("Ride a bike🚴");
+    addHabitItem("Eat less meat🥩");
+    addHabitItem("Do recycling🚮");
+    addHabitItem("Use reusable bags🛍️");
+    addHabitItem("Save water💧");
+
+    saveChangesBtn.addEventListener("click", () => {
+      const confirmSaveChanges = window.confirm("Are you sure you want to save changes?");
+      if (confirmSaveChanges) {
+        alert("Changes saved successfully!");
+      }
+    });
+
   </script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+
   <script>
     // Initialize Firebase
     const firebaseConfig = {
@@ -87,34 +115,6 @@
     };
     firebase.initializeApp(firebaseConfig);
     const firestore = firebase.firestore();
-
-    const habitList = document.querySelector('#habit-list');
-    const addHabitButton = document.querySelector('#add-habit');
-
-    // Add event listener for the Add Habit button
-    addHabitButton.addEventListener('click', () => {
-      const habitName = prompt("Enter a name for the new habit:");
-      if (habitName) {
-        addHabitItem(habitName);
-        saveHabitsToFirestore();
-      }
-    });
-
-    // Add a habit item to the list
-    function addHabitItem(name) {
-      const habitItem = document.createElement('li');
-      habitItem.textContent = name;
-
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = '-';
-      deleteButton.addEventListener('click', () => {
-        habitList.removeChild(habitItem);
-        saveHabitsToFirestore();
-      });
-      habitItem.appendChild(deleteButton);
-
-      habitList.appendChild(habitItem);
-    }
 
     // Load the list of habits from Firestore
     function loadHabitsFromFirestore() {
@@ -145,20 +145,10 @@
 </html>
 
 
-<<<<<<< HEAD
-
-
-<script src="./scripts/skeleton.js"></script>
 <script src="./scripts/firebaseAPI_BBY14.js"></script>
+<script src="./scripts/skeleton.js"></script>
 <script src="./scripts/main.js"></script>
 <script src="./scripts/script.js"></script>
-=======
-   <script src="./scripts/firebaseAPI_BBY14.js"></script>
- <script src="./scripts/skeleton.js"></script>
-  <script src="https://codepen.io/shshaw/pen/epmrgO"></script>
-  <script src="./scripts/main.js"></script>
-  <script src="./scripts/script.js"></script>
->>>>>>> a75505d942c1657247826ad8724ab83b90be0abd
 
 </body>
 
