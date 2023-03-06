@@ -1,5 +1,5 @@
 .body-container {
-  margin-top: 6vh;
+  margin-top: 7vh;
   margin-bottom: 100px;
   overflow-y: scroll;
 }
@@ -35,7 +35,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 6vh;
+  height: 7vh;
   margin: 0;
   z-index: 1000;
 }
