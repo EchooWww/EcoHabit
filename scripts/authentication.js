@@ -7,7 +7,6 @@ var uiConfig = {
       var user = authResult.user;                            // get the user object from the Firebase authentication database
       if (authResult.additionalUserInfo.isNewUser) {         //if new user
         const newUserRef = db.collection("users").doc(user.uid);
-
         const batch = db.batch();
 
         // Create the user document

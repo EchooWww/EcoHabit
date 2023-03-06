@@ -410,12 +410,9 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 /*------------------------------*/
 /*----------Learn More----------*/
 /*------------------------------*/
-#learnmore-container {
-  margin: 20% 0% 20%;
-  text-align: center;
-}
 
 .card {
+  text-align: center;
   padding: 20px;
 }
 
