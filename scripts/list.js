@@ -16,9 +16,13 @@ addHabitButton.addEventListener('click', () => {
 });
 
 // Add or delete a habit item from the list
-function addHabitItem(name) {
+function addHabitItem(name, id) {
   const habitItem = document.createElement('li');
   habitItem.textContent = name;
+
+  // Add a unique identifier attribute to the HTML element
+  habitItem.setAttribute('data-id', id);
+
   // Add event listener for the Delete Habit button, show a confirmation popup and only proceed with deletion if the user confirms.
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('btn', 'btn-light', 'btn-lg');
@@ -27,6 +31,7 @@ function addHabitItem(name) {
   deleteButton.addEventListener('click', () => {
     const confirmDelete = confirm(`Are you sure to remove ${name} from your habit list?`);
     if (confirmDelete) {
+      const habitId = habitItem.getAttribute('data-id');
       habitList.removeChild(habitItem);      // Add habit removal to changes array
       habitChanges.push({ type: 'remove', name: name });
     }
@@ -72,8 +77,12 @@ function saveHabitsToFirestore() {
         id: habitRef.id // set the document ID to the new auto-generated ID
       });
     } else if (change.type === 'remove') {
-      const habitDocRef = db.collection('users').doc(userID).collection('habits').doc();
-      batch.delete(habitDocRef);
+      const habitDocRef = db.collection('users').doc(userID).collection('habits');
+      habitDocRef.where("name", "==", change.name).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.delete();
+        });
+      });
     }
   });
 
