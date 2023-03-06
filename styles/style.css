@@ -382,6 +382,15 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   margin-right: auto;
 }
 
+.btn-remove {
+  float: right;
+}
+
+#add-habit,
+#save-changes {
+  margin: 5px;
+}
+
 #list-page-items {
   width: 300px;
   margin-left: auto;
@@ -390,15 +399,16 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 #list-container {
   margin: 10% 30%;
+  font-size: 20pt;
+  color: #6096B4;
 }
 
 #list-button-container {
   text-align: center;
+  display: grid;
+  justify-content: center;
 }
 
-/*------------------------------*/
-/*-------------List-------------*/
-/*------------------------------*/
 #list-title {
   background: #fff;
   font-family: 'Permanent Marker', cursive;
@@ -408,12 +418,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   text-align: center;
   color: #393D47;
 }
-
-#list-container {
-  font-size: 20pt;
-  color: #6096B4;
-}
-
 
 /*------------------------------*/
 /*----------Learn More----------*/
