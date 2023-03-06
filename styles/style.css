@@ -388,6 +388,14 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   margin-right: auto;
 }
 
+#list-container {
+  margin: 10% 30%;
+}
+
+#list-button-container {
+  text-align: center;
+}
+
 /*------------------------------*/
 /*-------------List-------------*/
 /*------------------------------*/

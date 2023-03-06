@@ -74,7 +74,9 @@ function saveHabitsToFirestore() {
     if (change.type === 'add') {
       batch.set(habitRef, {
         name: change.name,
-        id: habitRef.id // set the document ID to the new auto-generated ID
+        count: 0,
+        continious_count: 0,
+        last_checked: null
       });
     } else if (change.type === 'remove') {
       const habitDocRef = db.collection('users').doc(userID).collection('habits');
