@@ -40,6 +40,7 @@ saveChangesBtn.addEventListener("click", () => {
   const confirmSaveChanges = window.confirm("Are you sure you want to save changes?");
   if (confirmSaveChanges) {
     alert("Changes saved successfully!");
+    saveHabitsToFirestore();
   }
 });
 
@@ -59,36 +60,26 @@ function loadHabitsFromFirestore() {
 }
 loadHabitsFromFirestore();
 
-
 function saveHabitsToFirestore() {
   const userID = firebase.auth().currentUser.uid;
   const batch = db.batch();
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
 
-      habitChanges.forEach((change) => {
-        const habitRef = db.collection('users').doc(userID).collection('habits').doc(change.id);
-        if (change.type === 'add') {
-          habitRef.add({
-            name: change.name,
-            id: change.id
-          });
-        } else if (change.type === 'remove') {
-          habitRef.where('name', '==', change.name).get().then(snapshot => {
-            snapshot.docs.forEach(doc => {
-              doc.ref.delete();
-            });
-          });
-        }
+  habitChanges.forEach((change) => {
+    const habitRef = db.collection('users').doc(userID).collection('habits').doc(); // get a new document ID
+    if (change.type === 'add') {
+      batch.set(habitRef, {
+        name: change.name,
+        id: habitRef.id // set the document ID to the new auto-generated ID
       });
+    } else if (change.type === 'remove') {
+      const habitDocRef = db.collection('users').doc(userID).collection('habits').doc();
+      batch.delete(habitDocRef);
     }
   });
 
-
-
-  // Clear the changes array after saving
-  habitChanges = [];
+  batch.commit().then(() => {
+    console.log('Batch write to Firestore successful');
+  }).catch((error) => {
+    console.error('Error writing batch to Firestore: ', error);
+  });
 }
-
-
-
