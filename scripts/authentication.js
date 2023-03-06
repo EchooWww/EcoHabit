@@ -4,10 +4,61 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
+      var user = authResult.user;                            // get the user object from the Firebase authentication database
+      if (authResult.additionalUserInfo.isNewUser) {         //if new user
+        const newUserRef = db.collection("users").doc(user.uid);
+        const batch = db.batch();
+
+        // Create the user document
+        batch.set(newUserRef, {
+          name: user.displayName,
+          email: user.email
+        });
+
+        // Create the habits sub-collection
+        const habitsRef = newUserRef.collection("habits");
+        batch.set(habitsRef.doc(), {
+          name: "Ride a bike🚴",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Eat less meat🥩",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Do recycling🚮",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Use reusable bags🛍️",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Save water💧",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+
+        // Commit the batch
+        batch.commit().then(() => {
+          console.log("New user added to firestore");
+          window.location.assign("main.html");
+        }).catch(function (error) {
+          console.log("Error adding new user: " + error);
+        });
+      } else {
+        return true;
+      }
+      return false;
     },
     uiShown: function () {
       // The widget is rendered.
