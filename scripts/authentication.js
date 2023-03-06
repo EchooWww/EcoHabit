@@ -6,45 +6,53 @@ var uiConfig = {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
       var user = authResult.user;                            // get the user object from the Firebase authentication database
       if (authResult.additionalUserInfo.isNewUser) {         //if new user
-        db.collection("users").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
-          name: user.displayName,                    //"users" collection
-          email: user.email,                         //with authenticated user's ID (user.uid)
-        }).then(function () {
+        const newUserRef = db.collection("users").doc(user.uid);
+
+        const batch = db.batch();
+
+        // Create the user document
+        batch.set(newUserRef, {
+          name: user.displayName,
+          email: user.email
+        });
+
+        // Create the habits sub-collection
+        const habitsRef = newUserRef.collection("habits");
+        batch.set(habitsRef.doc(), {
+          name: "Ride a bike🚴",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Eat less meat🥩",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Do recycling🚮",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Use reusable bags🛍️",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+        batch.set(habitsRef.doc(), {
+          name: "Save water💧",
+          count: 0,
+          continuous_count: 0,
+          last_checked: null
+        });
+
+        // Commit the batch
+        batch.commit().then(() => {
           console.log("New user added to firestore");
-          // add a subcollection of "habits" to the new user
-          db.collection("users").doc(user.uid).collection("habits");
-          // add default habits to the subcollection
-          db.collection("users").doc(user.uid).collection("habits").add({
-            name: "Ride a bike🚴",
-            count: 0,
-            continuous_count: 0,
-            last_checked: null
-          });
-          db.collection("users").doc(user.uid).collection("habits").add({
-            name: "Eat less meat🥩",
-            count: 0,
-            continuous_count: 0,
-            last_checked: null
-          });
-          db.collection("users").doc(user.uid).collection("habits").add({
-            name: "Do recycling🚮",
-            count: 0,
-            continuous_count: 0,
-            last_checked: null
-          });
-          db.collection("users").doc(user.uid).collection("habits").add({
-            name: "Use reusable bags🛍️",
-            count: 0,
-            continuous_count: 0,
-            last_checked: null
-          });
-          db.collection("users").doc(user.uid).collection("habits").add({
-            name: "Save water💧",
-            count: 0,
-            continuous_count: 0,
-            last_checked: null
-          });
-          window.location.assign("main.html");       //re-direct to main.html after signup
+          window.location.assign("main.html");
         }).catch(function (error) {
           console.log("Error adding new user: " + error);
         });
