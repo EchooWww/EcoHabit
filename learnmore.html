@@ -46,7 +46,7 @@
     <nav id="headerPlaceholder"></nav>
 
     <!-- the body of your page goes here -->
-    <div class="body-container">
+    <!-- <div class="body-container">
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -71,7 +71,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <a href="articles/water.html"><img src="images/fish.jpg" class="card-img-top" alt="water waste">
+                <a href="articles/water.html"><img src="images/water.jpg" class="card-img-top" alt="water waste">
                     <div class="card-body">
                         <h5 class="card-title">Water</h5>
                 </a>
@@ -80,7 +80,7 @@
     </div>
     <div class="col">
         <div class="card">
-            <a href="articles/electr.html"><img src="images/lightbulb.jpg" class="card-img-top" alt="electricy">
+            <a href="articles/electricity.html"><img src="images/electricity.jpg" class="card-img-top" alt="electricy">
                 <div class="card-body">
                     <h5 class="card-title">Electricity</h5>
             </a>
@@ -109,7 +109,34 @@
     </div>
     </div>
     </div>
+    </div> -->
+
+    <div class="container">
+        <h1>Learn More...</h1>
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="learnmore-go-here" class="row row-cols-auto">
+            </div>
+        </div>
     </div>
+
+
+    <template id="learnmoreTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+            </div>
+        </div>
+    </template>
+
 
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
@@ -122,6 +149,8 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/learn.js"></script>
+
 </body>
 
 </html>

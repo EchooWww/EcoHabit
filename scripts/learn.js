@@ -1,8 +1,4 @@
-function learmoreHeyFunction() {
-    console.log("learnmore");
-    alert("Hey! Check out the Learn More Section");
-  }
-learmoreHeyFunction();
+
 
 //   .collection("learnmore")
 
@@ -12,11 +8,32 @@ learmoreHeyFunction();
 //     var learnmoreRef = db.collection("learnmore");
 
 //     learnmoreRef.add({
-//         code: "",
+//         code: "name of image",
 //         name: "",
 //         info: " ",
 //         last_updated: firebase.firestore.FieldValue.serverTimestamp()
 //     });
+
+function displayLearnmoreInformation(){
+    //retreive the document id from the url
+    let params = new URL(window.location.href) //get the url from the searbar
+    let ID = params.searchParams.get("docID");
+    console.log(ID);
+
+    db.collection("learnmore").doc(ID).get().then( thisLearnmore =>{
+        learmoreInfo = thisLearnmore.data();
+        learnmoreCode = learnmoreInfo.code;
+        learnmoreName = learnmoreInfo.name;
+
+        document.getElementById("learnmoreName").innerHTML=hikeName;
+        let imgEvent = document.querySelector( ".learnmore-img" );
+        imgEvent.src = "../images/" + learnmoreCode + ".jpg";
+    }
+
+    )
+
+}
+displayLearnmoreInformation();
 
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("learnmoreCardTemplate");
@@ -35,7 +52,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-title').innerHTML = title;
                 newcard.querySelector('.card-text').innerHTML = details;
                 newcard.querySelector('.card-image').src = `./images/${learnmoreCode}.jpg`; //Example: NV01.jpg
-                newcard.querySelector('a').href = "eachLearnmore.html?docID="+docID;
+                newcard.querySelector('a').href = "learnmore.html?docID="+docID;
                 
                 //attach to gallery: "learnmore-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);

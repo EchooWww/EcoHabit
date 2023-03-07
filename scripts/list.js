@@ -2,6 +2,12 @@ const habitList = document.querySelector('#habit-list');
 const addHabitButton = document.querySelector('#add-habit');
 const saveChangesBtn = document.getElementById("save-changes");
 
+function learmoreHeyFunction() {
+  console.log("learnmore");
+  alert("Hey! Check out the Learn More Section");
+}
+learmoreHeyFunction();
+
 // Array to store changes made to habit items
 let habitChanges = [];
 
