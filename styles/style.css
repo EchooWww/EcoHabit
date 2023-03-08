@@ -419,6 +419,10 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   color: #393D47;
 }
 
+#add-habit {
+  background-color: #6096B4;
+}
+
 /*------------------------------*/
 /*----------Learn More----------*/
 /*------------------------------*/

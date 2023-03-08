@@ -1,12 +1,5 @@
 const habitList = document.querySelector('#habit-list');
 const addHabitButton = document.querySelector('#add-habit');
-const saveChangesBtn = document.getElementById("save-changes");
-
-function learmoreHeyFunction() {
-  console.log("learnmore");
-  alert("Hey! Check out the Learn More Section");
-}
-learmoreHeyFunction();
 
 // Array to store changes made to habit items
 let habitChanges = [];
@@ -32,7 +25,7 @@ function addHabitItem(name, id) {
   // Add event listener for the Delete Habit button, show a confirmation popup and only proceed with deletion if the user confirms.
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('btn', 'btn-light', 'btn-remove');
-  deleteButton.textContent = 'remove';
+  deleteButton.textContent = '-';
 
   deleteButton.addEventListener('click', () => {
     const confirmDelete = confirm(`Are you sure to remove ${name} from your habit list?`);
@@ -40,6 +33,7 @@ function addHabitItem(name, id) {
       const habitId = habitItem.getAttribute('data-id');
       habitList.removeChild(habitItem);      // Add habit removal to changes array
       habitChanges.push({ type: 'remove', name: name });
+      saveHabitsToFirestore();
     }
   });
   habitItem.appendChild(deleteButton);
@@ -47,13 +41,6 @@ function addHabitItem(name, id) {
   habitList.appendChild(habitItem);
 }
 
-saveChangesBtn.addEventListener("click", () => {
-  const confirmSaveChanges = window.confirm("Are you sure you want to save changes?");
-  if (confirmSaveChanges) {
-    alert("Changes saved successfully!");
-    saveHabitsToFirestore();
-  }
-});
 
 // Load the user's habit list from firestore
 function loadHabitsFromFirestore() {
