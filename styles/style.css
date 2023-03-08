@@ -382,13 +382,18 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   margin-right: auto;
 }
 
-.btn-remove {
-  float: right;
+
+#habit-list {
+  list-style: none;
 }
 
 #add-habit,
 #save-changes {
   margin: 5px;
+}
+
+.btn-link {
+  text-decoration: none;
 }
 
 #list-page-items {
@@ -418,6 +423,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   text-align: center;
   color: #393D47;
 }
+
 
 #add-habit {
   background-color: #6096B4;

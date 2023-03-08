@@ -24,8 +24,13 @@ function addHabitItem(name, id) {
 
   // Add event listener for the Delete Habit button, show a confirmation popup and only proceed with deletion if the user confirms.
   const deleteButton = document.createElement('button');
-  deleteButton.classList.add('btn', 'btn-light', 'btn-remove');
-  deleteButton.textContent = '-';
+  deleteButton.classList.add('btn', 'btn-link');
+  deleteButton.textContent = '×';
+  deleteButton.style.fontSize = '25pt'
+  deleteButton.style.color = 'red';
+  deleteButton.style.fontWeight = 'bold';
+
+
 
   deleteButton.addEventListener('click', () => {
     const confirmDelete = confirm(`Are you sure to remove ${name} from your habit list?`);
