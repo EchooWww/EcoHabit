@@ -32,7 +32,7 @@ addHabitButton.addEventListener('click', () => {
     },
     allowOutsideClick: () => !Swal.isLoading()
   }).then((result) => {
-    if (result.isConfirmed) {
+    if (result.isConfirmed && habitName) {
       Swal.fire({
         title: 'Success!',
         text: `The habit '${result.value}' was added successfully.`,
