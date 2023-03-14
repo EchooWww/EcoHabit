@@ -1,5 +1,10 @@
+* {
+  font-family: monospace;
+  font-size: 14pt;
+}
+
 .body-container {
-  margin-top: 7vh;
+  margin-top: 6vh;
   margin-bottom: 100px;
   overflow-y: scroll;
 }
@@ -35,7 +40,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 7vh;
+  height: 6vh;
   margin: 0;
   z-index: 1000;
 }
@@ -249,8 +254,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 .todo-list {
   background: #fff;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 20pt;
   margin: auto;
   padding: 0.5em 1em;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
@@ -279,6 +282,8 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 .todo__text {
   color: #6096B4;
   transition: all 0.4s linear 0.4s;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20pt;
 }
 
 .todo__icon {
@@ -385,10 +390,14 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 #habit-list {
   list-style: none;
+
 }
 
-#add-habit,
-#save-changes {
+.habit-text {
+  font-size: 18pt;
+}
+
+#add-habit {
   margin: 5px;
 }
 
@@ -403,8 +412,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 }
 
 #list-container {
-  margin: 10% 30%;
-  font-size: 20pt;
+  margin: 10% 25%;
   color: #6096B4;
 }
 

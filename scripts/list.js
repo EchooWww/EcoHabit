@@ -17,6 +17,7 @@ addHabitButton.addEventListener('click', () => {
 // Add or delete a habit item from the list
 function addHabitItem(name, id) {
   const habitItem = document.createElement('li');
+  habitItem.classList.add('habit-text');
   habitItem.textContent = name;
 
   // Add a unique identifier attribute to the HTML element
@@ -24,7 +25,7 @@ function addHabitItem(name, id) {
 
   // Add event listener for the Delete Habit button, show a confirmation popup and only proceed with deletion if the user confirms.
   const deleteButton = document.createElement('button');
-  deleteButton.classList.add('btn', 'btn-link');
+  deleteButton.classList.add('btn', 'btn-link', 'text-decoration-none');
   deleteButton.textContent = '×';
   deleteButton.style.fontSize = '25pt'
   deleteButton.style.color = 'red';
