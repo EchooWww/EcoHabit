@@ -70,12 +70,9 @@
 }
 
 .bottom-nav img {
-  width: 30px;
+  width: 35px;
 }
 
-.active img {
-  width: 40px;
-}
 
 .nav-item {
   display: flex;
