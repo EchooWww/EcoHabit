@@ -300,17 +300,16 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   #index-landing-page {
     display: grid;
     grid-template-columns: 450px;
-    grid-template-rows: 110px 40% 50%;
+    grid-template-rows: 110px 300px auto;
     justify-content: center;
     padding-left: 0;
     padding-right: 0;
-
   }
 
   #logo {
     grid-row: 1;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   #gradient-edges {
@@ -338,7 +337,8 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     grid-column: 1;
     grid-row: 3;
     padding: 0;
-    margin-top: 0;
+    margin-top: 35px;
+    margin-bottom: auto;
     padding-left: 6%;
     padding-right: 6%;
     text-align: center;
