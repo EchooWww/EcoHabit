@@ -1,4 +1,3 @@
-
 const habitList = document.querySelector('.todo-list');
 const addHabitButton = document.querySelector('.todo__add');
 addHabitButton.style.display = 'flex';
@@ -52,9 +51,6 @@ function addHabitItem(name, id) {
   habitItem.style.marginLeft = '15%';
   habitItem.style.marginRight = '15%';
 
-  const checkboxContainer = document.createElement('div');
-  checkboxContainer.classList.add('todo__container');
-
   const checkbox = document.createElement('input');
   checkbox.classList.add('todo__state');
   checkbox.type = 'checkbox';
@@ -79,7 +75,6 @@ function addHabitItem(name, id) {
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.isConfirmed) {
-        const habitId = habitItem.getAttribute('data-id');
         habitList.removeChild(habitItem);
         // Add habit removal to changes array
         habitChanges.push({ type: 'remove', name: name });
@@ -172,3 +167,5 @@ function saveHabitsToFirestore() {
     console.error('Error writing batch to Firestore: ', error);
   });
 }
+
+
