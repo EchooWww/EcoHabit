@@ -228,19 +228,58 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 }
 
 #index-landing-page {
-  padding: 10%;
+  display: grid;
+  grid-template-columns: 48% 52%;
+  grid-template-rows: 100vh;
+  align-items: center;
 }
 
-#index-heading1 {
-  font-weight: bold;
-  font-size: 50pt;
-  color: #393D47;
+#index-landing-page-text {
+  grid-column: 1;
+  grid-row: 1;
+  padding-left: 30%;
+  padding-right: 0%;
 }
 
-#index-heading2 {
-  font-size: 26pt;
-  color: rgb(104, 104, 104);
+  #index-heading1 {
+    font-weight: bold;
+    font-size: 50pt;
+    color: #393D47;
+    line-height: 42pt;
+    letter-spacing: -2pt;
+  }
+
+  #index-heading2 {
+    padding-top: 20px;
+    padding-bottom: 35px;
+    font-size: 26pt;
+    color: rgb(104, 104, 104);
+  }
+
+  #get-started-button {
+    background: linear-gradient(#b8f6ff 7%, #00ddff 93%);
+  }
+
+  #get-started-button:hover {
+    box-shadow: 0 0 10px 2px #78b2ff;
+  }
+
+#index-graphics {
+  grid-column: 2;
+  grid-row: 1;
+  padding-left: 1%;
+  padding-right: 20%;
 }
+
+#gradient-edges {
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
 
 
 /*------------------------------*/

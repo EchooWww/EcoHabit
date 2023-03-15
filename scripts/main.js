@@ -1,4 +1,3 @@
-
 const habitList = document.querySelector('.todo-list');
 const addHabitButton = document.querySelector('.todo__add');
 addHabitButton.style.display = 'flex';
@@ -32,7 +31,7 @@ addHabitButton.addEventListener('click', () => {
     },
     allowOutsideClick: () => !Swal.isLoading()
   }).then((result) => {
-    if (result.isConfirmed && habitName) {
+    if (result.isConfirmed) {
       Swal.fire({
         title: 'Success!',
         text: `The habit '${result.value}' was added successfully.`,
@@ -51,9 +50,6 @@ function addHabitItem(name, id) {
   habitItem.style.alignItems = 'center';
   habitItem.style.marginLeft = '15%';
   habitItem.style.marginRight = '15%';
-
-  const checkboxContainer = document.createElement('div');
-  checkboxContainer.classList.add('todo__container');
 
   const checkbox = document.createElement('input');
   checkbox.classList.add('todo__state');
@@ -79,7 +75,6 @@ function addHabitItem(name, id) {
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.isConfirmed) {
-        const habitId = habitItem.getAttribute('data-id');
         habitList.removeChild(habitItem);
         // Add habit removal to changes array
         habitChanges.push({ type: 'remove', name: name });
@@ -172,3 +167,5 @@ function saveHabitsToFirestore() {
     console.error('Error writing batch to Firestore: ', error);
   });
 }
+
+
