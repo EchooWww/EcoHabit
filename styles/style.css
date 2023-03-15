@@ -40,11 +40,11 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 7vh;
+  height: 71px;
   margin: 0;
   z-index: 1000;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.041);
 }
-
 
 #title {
   display: flex;
@@ -124,9 +124,10 @@ body {
 .sidebarMenuInner li {
   list-style: none;
   color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
+  text-transform: lowercase;
+  /* font-weight: bold; */
   padding: 20px;
+  padding-left:30px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   z-index: 1001;
@@ -140,8 +141,8 @@ body {
 
 .sidebarMenuInner li a {
   color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
+  text-transform: lowercase;
+  font-weight: lighter;
   cursor: pointer;
   text-decoration: none;
 }
@@ -215,6 +216,12 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   box-sizing: border-box;
   transform: rotate(-135deg);
   margin-top: -9px;
+}
+
+.sidebar-items:hover {
+  font-weight: bolder;
+  color: white;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.336);
 }
 
 /* Sidebar end */
