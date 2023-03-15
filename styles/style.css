@@ -506,6 +506,10 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   font-size: 1em;
 }
 
+.btn-delete:hover {
+  color: #6096B4 !important;
+}
+
 
 element.style {
   display: block;

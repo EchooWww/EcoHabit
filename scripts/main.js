@@ -57,10 +57,10 @@ function addHabitItem(name, id) {
   habitItem.appendChild(checkbox);
 
   const deleteButton = document.createElement('button');
-  deleteButton.classList.add('btn', 'btn-link', 'text-decoration-none');
+  deleteButton.classList.add('btn', 'btn-link', 'text-decoration-none', 'btn-delete');
   deleteButton.textContent = '×';
   deleteButton.style.fontSize = '35pt'
-  deleteButton.style.color = '#6096B4';
+  deleteButton.style.color = '#93BFCF';
   deleteButton.style.fontWeight = 'bold';
   deleteButton.style.position = 'absolute';
   deleteButton.style.right = '0';
