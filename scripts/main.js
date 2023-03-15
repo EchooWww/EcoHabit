@@ -1,3 +1,4 @@
+
 const habitList = document.querySelector('.todo-list');
 const addHabitButton = document.querySelector('.todo__add');
 addHabitButton.style.display = 'flex';
@@ -11,12 +12,34 @@ addHabitButton.style.paddingTop = '0';
 let habitChanges = [];
 
 addHabitButton.addEventListener('click', () => {
-  const habitName = prompt('Enter a new habit:');
-  if (habitName) {
-    addHabitItem(habitName);
-    // Add new habit to changes array
-    habitChanges.push({ type: 'add', name: habitName });
-  }
+  Swal.fire({
+    title: 'Add a New Habit',
+    text: `Please enter the name of the new habit✍️`,
+    input: 'text',
+    inputAttributes: {
+      autocapitalize: 'off'
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Add Habit',
+    showLoaderOnConfirm: true,
+    preConfirm: (habitName) => {
+      if (habitName) {
+        addHabitItem(habitName);
+        habitChanges.push({ type: 'add', name: habitName });
+        saveHabitsToFirestore();
+        return habitName;
+      }
+    },
+    allowOutsideClick: () => !Swal.isLoading()
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: 'Success!',
+        text: `The habit '${result.value}' was added successfully.`,
+        icon: 'success'
+      });
+    }
+  });
 });
 
 
@@ -46,17 +69,30 @@ function addHabitItem(name, id) {
   deleteButton.style.position = 'absolute';
   deleteButton.style.right = '0';
 
-
   deleteButton.addEventListener('click', () => {
-    const confirmDelete = confirm(`Are you sure to remove ${name} from your habit list?`);
-    if (confirmDelete) {
-      const habitId = habitItem.getAttribute('data-id');
-      habitList.removeChild(habitItem);
-      // Add habit removal to changes array
-      habitChanges.push({ type: 'remove', name: name });
-      saveHabitsToFirestore();
-    }
+    Swal.fire({
+      title: 'Remove the Habit',
+      text: `Are you sure to remove "${name}" from your habit list?`,
+      showCancelButton: true,
+      icon: 'warning',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const habitId = habitItem.getAttribute('data-id');
+        habitList.removeChild(habitItem);
+        // Add habit removal to changes array
+        habitChanges.push({ type: 'remove', name: name });
+        saveHabitsToFirestore();
+        Swal.fire({
+          title: 'Success!',
+          text: `The habit '${name}' was removed successfully.`,
+          icon: 'success'
+        });
+      }
+    });
   });
+
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 200 25');
   svg.classList.add('todo__icon');
