@@ -222,10 +222,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 /*------------------------------*/
 /*------------Index-------------*/
 /*------------------------------*/
-#index-spacer-block {
-  display: block;
-  height: 24vh;
-}
 
 #index-landing-page {
   display: grid;
@@ -241,46 +237,82 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   padding-right: 0%;
 }
 
-  #index-heading1 {
-    font-weight: bold;
-    font-size: 50pt;
-    color: #393D47;
-    line-height: 42pt;
-    letter-spacing: -2pt;
-  }
+#index-heading1 {
+  font-weight: bold;
+  font-size: 50pt;
+  color: #393D47;
+  line-height: 42pt;
+  letter-spacing: -2pt;
+}
 
-  #index-heading2 {
-    padding-top: 20px;
-    padding-bottom: 35px;
-    font-size: 26pt;
-    color: rgb(104, 104, 104);
-  }
+#index-heading2 {
+  padding-top: 20px;
+  padding-bottom: 35px;
+  font-size: 26pt;
+  color: rgb(104, 104, 104);
+}
 
-  #get-started-button {
-    background: linear-gradient(#b8f6ff 7%, #00ddff 93%);
-  }
+#get-started-button {
+  background: linear-gradient(#b8f6ff 7%, #00ddff 93%);
+}
 
-  #get-started-button:hover {
-    box-shadow: 0 0 10px 2px #78b2ff;
-  }
+#get-started-button:hover {
+  box-shadow: 0 0 10px 2px #78b2ff;
+}
 
 #index-graphics {
   grid-column: 2;
   grid-row: 1;
   padding-left: 1%;
-  padding-right: 20%;
+  margin-right: 20%;
+  -webkit-mask-image: url(/images/gradient-edges.svg);
+  mask-image: url(/images/gradient-edges.svg);
+  -webkit-mask-size: cover;
+  mask-size: cover;
 }
 
-#gradient-edges {
-  position:absolute;
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
+@media (width < 800px) {
+  #index-landing-page {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 100px;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  #index-graphics {
+    grid-column: 1;
+    grid-row: 1;
+    -webkit-mask-image: url(/images/gradient-edges.svg);
+    mask-image: url(/images/gradient-edges.svg);
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+  }
+
+  #index-landing-page-text {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0;
+    margin-top: none;
+  }
+
+  #index-heading1 {
+    font-size: 36pt;
+  }
+
+  #index-heading2 {
+    padding-top: 15px;
+    padding-bottom: 35px;
+    font-size: 20pt;
+  }
+
 }
-
-
 
 /*------------------------------*/
 /*-------------Main-------------*/
