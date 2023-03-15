@@ -229,7 +229,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 #index-landing-page {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 48% 52%;
   grid-template-rows: 100vh;
   align-items: center;
 }
@@ -237,8 +237,8 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 #index-landing-page-text {
   grid-column: 1;
   grid-row: 1;
-  padding-left: 15%;
-  padding-right: 3%;
+  padding-left: 30%;
+  padding-right: 0%;
 }
 
   #index-heading1 {
@@ -267,9 +267,20 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 #index-graphics {
   grid-column: 2;
   grid-row: 1;
-  padding-left: 3%;
-  padding-right: 15%;
+  padding-left: 1%;
+  padding-right: 20%;
 }
+
+#gradient-edges {
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+
 
 /*------------------------------*/
 /*-------------Main-------------*/
