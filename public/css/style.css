@@ -73,7 +73,6 @@
   width: 35px;
 }
 
-
 .nav-item {
   display: flex;
   justify-content: center;
@@ -307,7 +306,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   #index-landing-page {
     display: grid;
     grid-template-columns: 450px;
-    grid-template-rows: 110px 300px auto;
+    grid-template-rows: 100px 300px auto;
     justify-content: center;
     padding-left: 0;
     padding-right: 0;
@@ -316,7 +315,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   #logo {
     grid-row: 1;
     margin: 0;
-    margin-bottom: 15px;
   }
 
   #gradient-edges {
@@ -338,6 +336,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
     padding: 0;
     margin: 0;
     justify-content: center;
+    margin-top: 10px;
   }
 
   #index-landing-page-text {
@@ -371,7 +370,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 100px;
 }
 
 #login-logo {
@@ -385,7 +384,10 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   width: 100%;
 }
 
-
+.main-image {
+  padding-left: 15%;
+  padding-right: 15%;
+}
 
 .todo-list {
   background: #fff;
