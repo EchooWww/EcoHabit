@@ -78,6 +78,9 @@
   justify-content: center;
 }
 
+#messages {
+  margin-bottom: 20vh
+}
 
 /*------------------------------*/
 /*------------Sidebar-----------*/
