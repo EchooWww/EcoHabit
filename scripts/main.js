@@ -10,10 +10,11 @@ addHabitButton.style.paddingTop = '0';
 // Array to store changes made to habit items
 let habitChanges = [];
 
+// Pop-up window for adding or deleting list-item
 addHabitButton.addEventListener('click', () => {
   Swal.fire({
     title: 'Add a New Habit',
-    text: `Please enter the name of the new habit✍️`,
+    text: `Please enter the name of the new habit ✍️`,
     input: 'text',
     inputAttributes: {
       autocapitalize: 'off'
@@ -44,6 +45,7 @@ addHabitButton.addEventListener('click', () => {
 
 
 function addHabitItem(name, id) {
+  // Creates list items
   const habitItem = document.createElement('label');
   habitItem.classList.add('todo');
   habitItem.style.display = 'flex';
@@ -51,11 +53,13 @@ function addHabitItem(name, id) {
   habitItem.style.marginLeft = '15%';
   habitItem.style.marginRight = '15%';
 
+  // Adds checkbox input
   const checkbox = document.createElement('input');
   checkbox.classList.add('todo__state');
   checkbox.type = 'checkbox';
   habitItem.appendChild(checkbox);
 
+  // 'x' button to delete list items
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('btn', 'btn-link', 'text-decoration-none', 'btn-delete');
   deleteButton.textContent = '×';
@@ -65,6 +69,7 @@ function addHabitItem(name, id) {
   deleteButton.style.position = 'absolute';
   deleteButton.style.right = '0';
 
+  // Remove list item after 'x' is clicked
   deleteButton.addEventListener('click', () => {
     Swal.fire({
       title: 'Remove the Habit',
@@ -88,44 +93,47 @@ function addHabitItem(name, id) {
     });
   });
 
+  // List items
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 200 25');
   svg.classList.add('todo__icon');
   habitItem.appendChild(svg);
   habitItem.insertBefore(deleteButton, svg.nextSibling); // insert delete button after checkbox
 
+  // Strikeout line for checking box
   const lineUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
   lineUse.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#todo__line');
   lineUse.classList.add('todo__line');
   svg.appendChild(lineUse);
 
+  // Checkbox
   const boxUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
   boxUse.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#todo__box');
   boxUse.classList.add('todo__box');
   svg.appendChild(boxUse);
 
+  // Checkmark
   const checkUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
   checkUse.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#todo__check');
   checkUse.classList.add('todo__check');
   svg.appendChild(checkUse);
 
-
-  const textDiv = document.createElement('div');
-  textDiv.classList.add('todo__text');
-  textDiv.textContent = name;
+  // Creating new list-item
+  const textDiv = document.createElement('div'); // New div
+  textDiv.classList.add('todo__text'); // Assign todo__text class
+  textDiv.textContent = name; 
   habitItem.appendChild(textDiv);
   habitItem.setAttribute('data-id', id);
   habitItem.appendChild(deleteButton);
-  habitList.appendChild(habitItem);
+  habitList.appendChild(habitItem); // Add created list-item to array "habitList"
 }
-
 
 
 
 // Load the user's habit list from firestore
 function loadHabitsFromFirestore() {
   firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
+    if (user) { // Checks to see if user is logged in
       db.collection('users').doc(user.uid).collection('habits').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           addHabitItem(doc.data().name);
@@ -138,6 +146,8 @@ function loadHabitsFromFirestore() {
 }
 loadHabitsFromFirestore();
 
+
+// Save the user's habit to firestore
 function saveHabitsToFirestore() {
   const userID = firebase.auth().currentUser.uid;
   const batch = db.batch();
