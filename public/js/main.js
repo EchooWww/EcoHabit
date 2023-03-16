@@ -157,7 +157,8 @@ function saveHabitsToFirestore() {
         name: change.name,
         count: 0,
         continious_count: 0,
-        last_checked: null
+        last_checked: null,
+        checked: false
       }).then(() => {
         console.log('Habit added to Firestore');
       }).catch((error) => {
@@ -177,4 +178,46 @@ function saveHabitsToFirestore() {
   });
 }
 
+function loadCheckedFromFirestore() {
+  const user = firebase.auth().currentUser;
+  const dbRef = db.collection('users').doc(user.uid).collection('habits');
 
+  // Attach a "change" event listener to the parent element of all .todo__state checkboxes
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target.matches('.todo__state')) {
+      const name = target.closest('.todo').querySelector('.todo__text').textContent;
+      const checked = target.checked;
+
+      // Update the checked status of the habit in Firestore
+      dbRef.where("name", "==", name).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.update({ checked: checked });
+        });
+      });
+    }
+  });
+
+  // Load the checked status of all habits from Firestore
+  dbRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const name = doc.data().name;
+      const checked = doc.data().checked;
+      const todoTextElements = document.querySelectorAll('.todo__text');
+      const todoTextElement = Array.from(todoTextElements).find(element => element.textContent.includes(`${name}`));
+      const parentElement = todoTextElement.closest('.todo');
+
+      // Set the checked status of the corresponding checkbox
+      const checkbox = parentElement.querySelector('.todo__state');
+      checkbox.checked = checked;
+    });
+  });
+}
+
+window.onload = function () {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loadCheckedFromFirestore();
+    }
+  })
+};

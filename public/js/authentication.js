@@ -21,31 +21,36 @@ var uiConfig = {
           name: "Ride a bike🚴",
           count: 0,
           continuous_count: 0,
-          last_checked: null
+          last_checked: null,
+          checked: false
         });
         batch.set(habitsRef.doc(), {
           name: "Eat less meat🥩",
           count: 0,
           continuous_count: 0,
-          last_checked: null
+          last_checked: null,
+          checked: false
         });
         batch.set(habitsRef.doc(), {
           name: "Do recycling🚮",
           count: 0,
           continuous_count: 0,
-          last_checked: null
+          last_checked: null,
+          checked: false
         });
         batch.set(habitsRef.doc(), {
           name: "Use reusable bags🛍️",
           count: 0,
           continuous_count: 0,
-          last_checked: null
+          last_checked: null,
+          checked: false
         });
         batch.set(habitsRef.doc(), {
           name: "Save water💧",
           count: 0,
           continuous_count: 0,
-          last_checked: null
+          last_checked: null,
+          checked: false
         });
 
         // Commit the batch
