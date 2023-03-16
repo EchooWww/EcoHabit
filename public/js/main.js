@@ -43,7 +43,6 @@ addHabitButton.addEventListener('click', () => {
 });
 
 
-
 function addHabitItem(name, id) {
   // Creates list items
   const habitItem = document.createElement('label');
@@ -121,7 +120,7 @@ function addHabitItem(name, id) {
   // Creating new list-item
   const textDiv = document.createElement('div'); // New div
   textDiv.classList.add('todo__text'); // Assign todo__text class
-  textDiv.textContent = name; 
+  textDiv.textContent = name;
   habitItem.appendChild(textDiv);
   habitItem.setAttribute('data-id', id);
   habitItem.appendChild(deleteButton);
