@@ -1,38 +1,83 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios');
+const express = require("express");
+const { Configuration, OpenAIApi } = require("openai");
 const app = express();
-const port = 8000;
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+require("dotenv").config();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:3000`);
+const config = new Configuration({
+  apiKey: process.env.OPEN_AI_KEY,
 });
-app.post('/chatbot', async (req, res) => {
-  const { message } = req.body;
 
-  const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-    prompt: message,
-    max_tokens: 50,
-    n: 1,
-    stop: '\n',
-    temperature: 0.7
-  }, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.sk - H8XBM50I3ebv2OmRQR5pT3BlbkFJCbkhduuyyvyzYmuLNdmj}`
-    }
+const openai = new OpenAIApi(config);
+
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+
+  socket.on("chat message", async (msg) => {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: msg,
+      temperature: 1,
+      max_tokens: 100,
+    });
+    io.emit("chat message", response.data.choices[0].text);
   });
 
-  app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/learnmorepage.html');
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
   });
+});
 
-  const { choices } = response.data?.choices?.[0];
 
-  const botResponse = choices.map(choice => choice.text).join('');
+app.use(express.static('app'));
+app.use("/js", express.static("./public/js"));
+app.use("/css", express.static("./public/css"));
+app.use("/img", express.static("./public/img"));
 
-  res.json({ message: botResponse });
+
+//Call back function
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/app/html/index.html');
+});
+
+app.get('/index.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/index.html');
+});
+
+app.get('/login.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/login.html');
+});
+
+app.get('/main.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/main.html');
+});
+
+app.get('/learnmorepage.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/learnmorepage.html');
+});
+
+app.get('/profile.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/profile.html');
+});
+
+app.get('/stats.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/stats.html');
+});
+
+
+app.get('/header', (req, res) => {
+  res.sendFile(__dirname + '/text/header.html');
+});
+
+app.get('/nav', (req, res) => {
+  res.sendFile(__dirname + '/text/nav.html');
+});
+
+
+http.listen(8080, () => {
+  console.log("listening on *:8080");
 });
