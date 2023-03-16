@@ -1,19 +1,31 @@
 {
-  "name": "openai-quickstart-node",
-  "version": "0.1.0",
-  "private": true,
+  "name": "1800_202310_bby14",
+  "version": "1.0.0",
+  "description": "## 1. Project Description State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.   This browser based web application to ...",
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ECHOOWWW/1800_202310_BBY14.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ECHOOWWW/1800_202310_BBY14/issues"
+  },
+  "homepage": "https://github.com/ECHOOWWW/1800_202310_BBY14#readme",
   "dependencies": {
-    "next": "^13.1.1",
-    "openai": "^3.1.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "openai": "^3.2.1",
+    "socket.io": "^4.6.1"
   },
-  "engines": {
-    "node": ">=14.6.0"
+  "devDependencies": {
+    "nodemon": "^2.0.21"
   }
 }
