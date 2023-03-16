@@ -1,6 +1,6 @@
-.env
 .DS_Store
 *.logs
 node_modules/
 .vscode/
 firebaseAPI_BBY14.js
+.env

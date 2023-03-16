@@ -290,7 +290,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   grid-row: 2;
   margin-left: 2%;
   margin-right: 20%;
-  -webkit-mask-image: url(/images/gradient-edges.svg);
+  /* -webkit-mask-image: url(/images/gradient-edges.svg); */
   mask-image: url(/images/gradient-edges.svg);
   -webkit-mask-size: cover;
   mask-size: cover;
