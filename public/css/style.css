@@ -332,7 +332,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   #index-graphics {
     grid-column: 1;
     grid-row: 2;
-    -webkit-mask-image: url(/images/gradient-edges.svg);
+    /* -webkit-mask-image: url(/images/gradient-edges.svg); */
     mask-image: url(/images/gradient-edges.svg);
     -webkit-mask-size: cover;
     mask-size: cover;
@@ -694,3 +694,11 @@ element.style {
 
 
 /* learn more end*/
+
+/*------------------------------*/
+/*-------------Stats------------*/
+/*------------------------------*/
+
+#calendar {
+  padding: 10%;
+}

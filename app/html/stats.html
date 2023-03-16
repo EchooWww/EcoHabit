@@ -35,6 +35,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
+  <!-- FullCalendar CSS -->
+
+  <!-- FullCalendar JS -->
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+      });
+      calendar.render();
+    });
+
+  </script>
+
+
   <!-------------------------------------------->
   <!-- Other libraries and styles of your own -->
   <!-------------------------------------------->
@@ -54,6 +71,11 @@
 
   <!-- the body of your page goes here -->
   <!-- stuff -->
+  <div class="body-container">
+    <div id="calendar"></div>
+  </div>
+
+
 
   <!-- our own footer goes here-->
   <nav id="navbarPlaceholder"></nav>
@@ -65,6 +87,7 @@
   <script src="/js/firebaseAPI_BBY14.js"></script>
   <script src="/js/skeleton.js"></script>
   <script src="/js/common.js"></script>
+  <script src="/js/stats.js"></script>
 
 
 </body>
