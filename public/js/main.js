@@ -149,21 +149,28 @@ loadHabitsFromFirestore();
 // Save the user's habit to firestore
 function saveHabitsToFirestore() {
   const userID = firebase.auth().currentUser.uid;
+  const dbRef = db.collection('users').doc(userID).collection('habits');
 
   habitChanges.forEach((change) => {
-    const habitRef = db.collection('users').doc(userID).collection('habits').doc(); // get a new document ID
     if (change.type === 'add') {
-      set(habitRef, {
+      dbRef.add({
         name: change.name,
         count: 0,
         continious_count: 0,
         last_checked: null
+      }).then(() => {
+        console.log('Habit added to Firestore');
+      }).catch((error) => {
+        console.error('Error adding habit to Firestore: ', error);
       });
     } else if (change.type === 'remove') {
-      const habitDocRef = db.collection('users').doc(userID).collection('habits');
-      habitDocRef.where("name", "==", change.name).get().then((querySnapshot) => {
+      dbRef.where("name", "==", change.name).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          doc.ref.delete();
+          doc.ref.delete().then(() => {
+            console.log('Habit removed from Firestore');
+          }).catch((error) => {
+            console.error('Error removing habit from Firestore: ', error);
+          });
         });
       });
     }
