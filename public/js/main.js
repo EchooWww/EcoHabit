@@ -149,12 +149,11 @@ loadHabitsFromFirestore();
 // Save the user's habit to firestore
 function saveHabitsToFirestore() {
   const userID = firebase.auth().currentUser.uid;
-  const batch = db.batch();
 
   habitChanges.forEach((change) => {
     const habitRef = db.collection('users').doc(userID).collection('habits').doc(); // get a new document ID
     if (change.type === 'add') {
-      batch.set(habitRef, {
+      set(habitRef, {
         name: change.name,
         count: 0,
         continious_count: 0,
@@ -168,12 +167,6 @@ function saveHabitsToFirestore() {
         });
       });
     }
-  });
-
-  batch.commit().then(() => {
-    console.log('Batch write to Firestore successful');
-  }).catch((error) => {
-    console.error('Error writing batch to Firestore: ', error);
   });
 }
 
