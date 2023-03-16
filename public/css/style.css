@@ -127,7 +127,7 @@ body {
   text-transform: lowercase;
   /* font-weight: bold; */
   padding: 20px;
-  padding-left:30px;
+  padding-left: 30px;
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   z-index: 1001;
@@ -606,7 +606,9 @@ element.style {
 .body-container-learnmore {
   display: grid;
   /* justify-content: center; */
-  margin: 5%;
+  margin: 5% 6%;
+  overflow-y: scroll;
+  margin-top: 8vh;
 }
 
 .conversation-window {
@@ -646,7 +648,7 @@ element.style {
   justify-content: space-between;
   align-items: baseline;
   position: absolute;
-  bottom: 10%;
+  bottom: 12%;
   width: 90%;
   padding: 0;
 
@@ -684,5 +686,6 @@ element.style {
 #send-message:hover {
   background-color: #6096B4;
 }
+
 
 /* learn more end*/

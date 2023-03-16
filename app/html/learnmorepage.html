@@ -44,95 +44,11 @@
     });
 
   </script>
-  <style>
-    .body-container-learnmore {
-      display: grid;
-      /* justify-content: center; */
-      margin: 5%;
-    }
-
-    .conversation-window {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: scroll;
-    }
-
-    .chat-message {
-      margin-bottom: 20px;
-      display: inline-block;
-      max-width: 80%;
-      padding: 10px;
-      border-radius: 5px;
-    }
-
-    .chat-message p {
-      margin: 0;
-    }
-
-    .received {
-      background-color: #fff;
-      width: 70%;
-    }
-
-    .sent {
-      background-color: #6096b4;
-      color: #fff;
-      align-self: flex-end;
-      max-width: 70%;
-
-    }
-
-    .input-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      position: absolute;
-      bottom: 10%;
-      width: 90%;
-      padding: 0;
-
-    }
-
-    #m {
-      flex-shrink: 0;
-      padding: 15px;
-      font-size: 16px;
-      border-radius: 4px 0 0 4px;
-      border-style: solid;
-      border-color: #93BFCF;
-      box-sizing: border-box;
-      width: 80%;
-    }
-
-    #send-message {
-      background-color: #93BFCF;
-      color: #fff;
-      border-radius: 0 4px 4px 0;
-      font-size: 16px;
-      padding: 15px;
-      cursor: pointer;
-      flex-shrink: 1;
-      height: 100%;
-      border-style: solid;
-      border-color: #93BFCF;
-      width: 15%;
-    }
-
-    #message-form {
-      width: 100%;
-    }
-
-    #send-message:hover {
-      background-color: #6096B4;
-    }
-  </style>
 </head>
 <nav id="headerPlaceholder"></nav>
 
 <body>
   <div class="body-container-learnmore">
-
     <div class="conversation-window">
       <div class="chat-message received">
         <p>Ask me anything about green habits🌍
