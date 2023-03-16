@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
       model: "text-davinci-003",
       prompt: msg,
       temperature: 1,
-      max_tokens: 100,
+      max_tokens: 500,
     });
     io.emit("chat message", response.data.choices[0].text);
   });
