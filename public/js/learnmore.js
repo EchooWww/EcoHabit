@@ -1,3 +1,4 @@
+
 $(function () {
   const socket = io();
   const $messages = $('#messages');
@@ -13,6 +14,11 @@ $(function () {
     const $message = $('<div class="conversation-window"><div class="chat-message sent"><p></p></div></div>');
     $message.find('p').text(message);
     $messages.append($message);
+
+    // Scrolls to bottom of the chat
+    const chatMessages = document.getElementById('page-container');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
     // Send the message to the server
     socket.emit("chat message", message);
 
@@ -27,6 +33,10 @@ $(function () {
     const $message = $('<div class="conversation-window"><div class="chat-message received"><p></p></div></div>');
     $message.find('p').text(msg);
     $messages.append($message);
+
+    // Scrolls to bottom of the chat
+    const chatMessages = document.getElementById('page-container');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   });
 });
 
