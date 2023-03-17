@@ -248,17 +248,24 @@ function updateHabitStats() {
 }
 
 // Run updateHabitStats() at 23:59:59 every day
+function newSet() {
+  const now = new Date();
+  if (now.getHours() === 21 && now.getMinutes() === 57 && now.getSeconds() === 59) {
+    updateHabitStats();
+  }
+}
+let timerID = null;
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    setTimeout(() => {
-      setInterval(() => {
-        const now = new Date();
-        if (now.getHours() === 23 && now.getMinutes() === 59 && now.getSeconds() === 59) {
-          updateHabitStats();
-        }
-      }, 1000);
-    }, 5000); // delay the interval by 5 seconds
+    console.log(user);
+    if (timerID == null) {
+      timerID = setInterval(newSet, 1000);
+    }
+    const newDate = new Date();
+    if (newDate.getHours() === 21 && newDate.getMinutes() === 58 && newDate.getSeconds() === 00 && timerID != null) {
+      clearInterval(timerID);
+      timerID = null;
+    }
   }
 });
-
 
