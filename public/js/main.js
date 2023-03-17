@@ -221,3 +221,44 @@ window.onload = function () {
     }
   })
 };
+
+function updateHabitStats() {
+  const dbRef = db.collection('users').doc(firebase.auth().currentUser.uid).collection('habits');
+  const habitsToUpdate = [];
+  // Get all habits and update stats for habits that were checked
+  dbRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const habit = doc.data();
+      console.log(habit);
+      if (habit.checked) {
+        habit.count += 1;
+        habit.checked = false; // reset checked status
+        habitsToUpdate.push({ id: doc.id, data: habit });
+      }
+    });
+
+    // Batch update habits in Firestore
+    const batch = db.batch();
+    habitsToUpdate.forEach((habit) => {
+      const habitRef = dbRef.doc(habit.id);
+      batch.update(habitRef, habit.data);
+    });
+    batch.commit();
+  });
+}
+
+// Run updateHabitStats() at 23:59:59 every day
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    setTimeout(() => {
+      setInterval(() => {
+        const now = new Date();
+        if (now.getHours() === 23 && now.getMinutes() === 59 && now.getSeconds() === 59) {
+          updateHabitStats();
+        }
+      }, 1000);
+    }, 5000); // delay the interval by 5 seconds
+  }
+});
+
+
