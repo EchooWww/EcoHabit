@@ -157,7 +157,8 @@ function saveHabitsToFirestore() {
         name: change.name,
         count: 0,
         continious_count: 0,
-        last_checked: null
+        last_checked: null,
+        checked: false
       }).then(() => {
         console.log('Habit added to Firestore');
       }).catch((error) => {
@@ -176,5 +177,88 @@ function saveHabitsToFirestore() {
     }
   });
 }
+
+function loadCheckedFromFirestore() {
+  const user = firebase.auth().currentUser;
+  const dbRef = db.collection('users').doc(user.uid).collection('habits');
+
+  // Attach a "change" event listener to the parent element of all .todo__state checkboxes
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (target.matches('.todo__state')) {
+      const name = target.closest('.todo').querySelector('.todo__text').textContent;
+      const checked = target.checked;
+
+      // Update the checked status of the habit in Firestore
+      dbRef.where("name", "==", name).get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.update({ checked: checked });
+        });
+      });
+    }
+  });
+
+  // Load the checked status of all habits from Firestore
+  dbRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const name = doc.data().name;
+      const checked = doc.data().checked;
+      const todoTextElements = document.querySelectorAll('.todo__text');
+      const todoTextElement = Array.from(todoTextElements).find(element => element.textContent.includes(`${name}`));
+      const parentElement = todoTextElement.closest('.todo');
+
+      // Set the checked status of the corresponding checkbox
+      const checkbox = parentElement.querySelector('.todo__state');
+      checkbox.checked = checked;
+    });
+  });
+}
+
+window.onload = function () {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loadCheckedFromFirestore();
+    }
+  })
+};
+
+function updateHabitStats() {
+  const dbRef = db.collection('users').doc(firebase.auth().currentUser.uid).collection('habits');
+  const habitsToUpdate = [];
+  // Get all habits and update stats for habits that were checked
+  dbRef.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      const habit = doc.data();
+      console.log(habit);
+      if (habit.checked) {
+        habit.count += 1;
+        habit.checked = false; // reset checked status
+        habitsToUpdate.push({ id: doc.id, data: habit });
+      }
+    });
+
+    // Batch update habits in Firestore
+    const batch = db.batch();
+    habitsToUpdate.forEach((habit) => {
+      const habitRef = dbRef.doc(habit.id);
+      batch.update(habitRef, habit.data);
+    });
+    batch.commit();
+  });
+}
+
+// Run updateHabitStats() at 23:59:59 every day
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    setTimeout(() => {
+      setInterval(() => {
+        const now = new Date();
+        if (now.getHours() === 23 && now.getMinutes() === 59 && now.getSeconds() === 59) {
+          updateHabitStats();
+        }
+      }, 1000);
+    }, 5000); // delay the interval by 5 seconds
+  }
+});
 
 
