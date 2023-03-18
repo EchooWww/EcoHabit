@@ -193,6 +193,7 @@ function loadCheckedFromFirestore() {
       dbRef.where("name", "==", name).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           doc.ref.update({ checked: checked });
+
         });
       });
     }
@@ -222,50 +223,50 @@ window.onload = function () {
   })
 };
 
-function updateHabitStats() {
-  const dbRef = db.collection('users').doc(firebase.auth().currentUser.uid).collection('habits');
-  const habitsToUpdate = [];
-  // Get all habits and update stats for habits that were checked
-  dbRef.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      const habit = doc.data();
-      console.log(habit);
-      if (habit.checked) {
-        habit.count += 1;
-        habit.checked = false; // reset checked status
-        habitsToUpdate.push({ id: doc.id, data: habit });
-      }
-    });
+// function updateHabitStats() {
+//   const dbRef = db.collection('users').doc(firebase.auth().currentUser.uid).collection('habits');
+//   const habitsToUpdate = [];
+//   // Get all habits and update stats for habits that were checked
+//   dbRef.get().then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       const habit = doc.data();
+//       console.log(habit);
+//       if (habit.checked) {
+//         habit.count += 1;
+//         habit.checked = false; // reset checked status
+//         habitsToUpdate.push({ id: doc.id, data: habit });
+//       }
+//     });
 
-    // Batch update habits in Firestore
-    const batch = db.batch();
-    habitsToUpdate.forEach((habit) => {
-      const habitRef = dbRef.doc(habit.id);
-      batch.update(habitRef, habit.data);
-    });
-    batch.commit();
-  });
-}
+//     // Batch update habits in Firestore
+//     const batch = db.batch();
+//     habitsToUpdate.forEach((habit) => {
+//       const habitRef = dbRef.doc(habit.id);
+//       batch.update(habitRef, habit.data);
+//     });
+//     batch.commit();
+//   });
+// }
 
-// Run updateHabitStats() at 23:59:59 every day
-function newSet() {
-  const now = new Date();
-  if (now.getHours() === 21 && now.getMinutes() === 57 && now.getSeconds() === 59) {
-    updateHabitStats();
-  }
-}
-let timerID = null;
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log(user);
-    if (timerID == null) {
-      timerID = setInterval(newSet, 1000);
-    }
-    const newDate = new Date();
-    if (newDate.getHours() === 21 && newDate.getMinutes() === 58 && newDate.getSeconds() === 00 && timerID != null) {
-      clearInterval(timerID);
-      timerID = null;
-    }
-  }
-});
+// // Run updateHabitStats() at 23:59:59 every day
+// function newSet() {
+//   const now = new Date();
+//   if (now.getHours() === 10 && now.getMinutes() === 44) {
+//     updateHabitStats();
+//   }
+// }
+// let timerID = null;
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log(user);
+//     if (timerID == null) {
+//       timerID = setInterval(newSet, 60000);
+//     }
+//     const newDate = new Date();
+//     if (newDate.getHours() === 10 && newDate.getMinutes() === 45 && timerID != null) {
+//       clearInterval(timerID);
+//       timerID = null;
+//     }
+//   }
+// });
 

@@ -810,9 +810,9 @@ element.style {
   }
 
   .member-cards {
-    padding: 25px;
-    height: 280px;
-    width: 200px;
+    padding: 20px;
+    height: 290px;
+    width: 230px;
     color: black;
     border-style: solid;
     border-color: #ffffff;
@@ -900,5 +900,6 @@ element.style {
 
   .member-description {
     grid-column: 2;
+    font-size: 10pt;
   }
 }

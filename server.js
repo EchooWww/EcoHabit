@@ -32,7 +32,6 @@ io.on("connection", (socket) => {
   });
 });
 
-
 app.use(express.static('app'));
 app.use("/js", express.static("./public/js"));
 app.use("/css", express.static("./public/css"));
@@ -76,6 +75,11 @@ app.get('/header', (req, res) => {
 app.get('/nav', (req, res) => {
   res.sendFile(__dirname + '/text/nav.html');
 });
+
+app.get('/nonactive-nav', (req, res) => {
+  res.sendFile(__dirname + '/text/nonactive-nav.html');
+});
+
 
 
 http.listen(8080, () => {
