@@ -55,8 +55,8 @@ app.get('/main.html', (req, res) => {
   res.sendFile(__dirname + '/app/html/main.html');
 });
 
-app.get('/learnmorepage.html', (req, res) => {
-  res.sendFile(__dirname + '/app/html/learnmorepage.html');
+app.get('/chat.html', (req, res) => {
+  res.sendFile(__dirname + '/app/html/chat.html');
 });
 
 app.get('/profile.html', (req, res) => {
