@@ -42,7 +42,7 @@ addHabitButton.addEventListener('click', () => {
   });
 });
 
-
+//add habit items to the front end habit list
 function addHabitItem(name, id) {
   // Creates list items
   const habitItem = document.createElement('label');
@@ -129,11 +129,12 @@ function addHabitItem(name, id) {
 
 
 
-// Load the user's habit list from firestore
+// Load the user's habit list from firestore and call it immediately
 function loadHabitsFromFirestore() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) { // Checks to see if user is logged in
       db.collection('users').doc(user.uid).collection('habits').get().then((querySnapshot) => {
+        //call the addHabitItem() function to add habits to the front-end
         querySnapshot.forEach((doc) => {
           addHabitItem(doc.data().name);
         });
@@ -145,12 +146,10 @@ function loadHabitsFromFirestore() {
 }
 loadHabitsFromFirestore();
 
-
 // Save the user's habit to firestore
 function saveHabitsToFirestore() {
   const userID = firebase.auth().currentUser.uid;
   const dbRef = db.collection('users').doc(userID).collection('habits');
-
   habitChanges.forEach((change) => {
     if (change.type === 'add') {
       dbRef.add({
@@ -178,6 +177,7 @@ function saveHabitsToFirestore() {
   });
 }
 
+//The function to load and update habit status
 function loadCheckedFromFirestore() {
   const user = firebase.auth().currentUser;
   const dbRef = db.collection('users').doc(user.uid).collection('habits');
@@ -192,13 +192,15 @@ function loadCheckedFromFirestore() {
       // Update the checked status of the habit in Firestore
       dbRef.where("name", "==", name).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          doc.ref.update({ checked: checked });
-
+          doc.ref.update({
+            checked: checked,
+            count: firebase.firestore.FieldValue.increment(checked ? 1 : -1),
+            ...(checked && { last_checked: firebase.firestore.Timestamp.now() })
+          });
         });
       });
     }
   });
-
   // Load the checked status of all habits from Firestore
   dbRef.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -207,66 +209,30 @@ function loadCheckedFromFirestore() {
       const todoTextElements = document.querySelectorAll('.todo__text');
       const todoTextElement = Array.from(todoTextElements).find(element => element.textContent.includes(`${name}`));
       const parentElement = todoTextElement.closest('.todo');
-
       // Set the checked status of the corresponding checkbox
       const checkbox = parentElement.querySelector('.todo__state');
       checkbox.checked = checked;
     });
   });
-}
+  //   //check the time difference from last_checked and current time
+  //   dbRef.where("name", "==", name).get().then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       const data = doc.data(); // retrieve the field-value pairs for the document
+  //       const lastUpdated = data.last_checked.toDate(); // convert the Firestore timestamp to a Date object
+  //       const currentTime = new Date(); // create a new Date object with the current system time
+  //       const timeDifference = currentTime.getTime() - lastUpdated.getTime(); // calculate the time difference in milliseconds
+  //       const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // calculate the day difference
+  //       console.log(`The document was last updated ${dayDifference} days ago.`);
+  //     });
+  //   });
+  // }
 
-window.onload = function () {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      loadCheckedFromFirestore();
-    }
-  })
-};
 
-// function updateHabitStats() {
-//   const dbRef = db.collection('users').doc(firebase.auth().currentUser.uid).collection('habits');
-//   const habitsToUpdate = [];
-//   // Get all habits and update stats for habits that were checked
-//   dbRef.get().then((querySnapshot) => {
-//     querySnapshot.forEach((doc) => {
-//       const habit = doc.data();
-//       console.log(habit);
-//       if (habit.checked) {
-//         habit.count += 1;
-//         habit.checked = false; // reset checked status
-//         habitsToUpdate.push({ id: doc.id, data: habit });
-//       }
-//     });
-
-//     // Batch update habits in Firestore
-//     const batch = db.batch();
-//     habitsToUpdate.forEach((habit) => {
-//       const habitRef = dbRef.doc(habit.id);
-//       batch.update(habitRef, habit.data);
-//     });
-//     batch.commit();
-//   });
-// }
-
-// // Run updateHabitStats() at 23:59:59 every day
-// function newSet() {
-//   const now = new Date();
-//   if (now.getHours() === 10 && now.getMinutes() === 44) {
-//     updateHabitStats();
-//   }
-// }
-// let timerID = null;
-// firebase.auth().onAuthStateChanged((user) => {
-//   if (user) {
-//     console.log(user);
-//     if (timerID == null) {
-//       timerID = setInterval(newSet, 60000);
-//     }
-//     const newDate = new Date();
-//     if (newDate.getHours() === 10 && newDate.getMinutes() === 45 && timerID != null) {
-//       clearInterval(timerID);
-//       timerID = null;
-//     }
-//   }
-// });
-
+  //be called immediately after the page is loaded
+  window.onload = function () {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        loadCheckedFromFirestore();
+      }
+    })
+  };
