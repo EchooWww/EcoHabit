@@ -214,25 +214,27 @@ function loadCheckedFromFirestore() {
       checkbox.checked = checked;
     });
   });
-  //   //check the time difference from last_checked and current time
-  //   dbRef.where("name", "==", name).get().then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       const data = doc.data(); // retrieve the field-value pairs for the document
-  //       const lastUpdated = data.last_checked.toDate(); // convert the Firestore timestamp to a Date object
-  //       const currentTime = new Date(); // create a new Date object with the current system time
-  //       const timeDifference = currentTime.getTime() - lastUpdated.getTime(); // calculate the time difference in milliseconds
-  //       const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // calculate the day difference
-  //       console.log(`The document was last updated ${dayDifference} days ago.`);
-  //     });
-  //   });
-  // }
+}
+//   //check the time difference from last_checked and current time
+//   dbRef.where("name", "==", name).get().then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       const data = doc.data(); // retrieve the field-value pairs for the document
+//       const lastUpdated = data.last_checked.toDate(); // convert the Firestore timestamp to a Date object
+//       const currentTime = new Date(); // create a new Date object with the current system time
+//       const timeDifference = currentTime.getTime() - lastUpdated.getTime(); // calculate the time difference in milliseconds
+//       const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // calculate the day difference
+//       console.log(`The document was last updated ${dayDifference} days ago.`);
+//     });
+//   });
+// }
 
 
-  //be called immediately after the page is loaded
-  window.onload = function () {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        loadCheckedFromFirestore();
-      }
-    })
-  };
+//be called immediately after the page is loaded
+window.onload = function () {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loadCheckedFromFirestore();
+    }
+  })
+};
+
