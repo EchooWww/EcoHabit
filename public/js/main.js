@@ -181,14 +181,12 @@ function saveHabitsToFirestore() {
 function loadCheckedFromFirestore() {
   const user = firebase.auth().currentUser;
   const dbRef = db.collection('users').doc(user.uid).collection('habits');
-
   // Attach a "change" event listener to the parent element of all .todo__state checkboxes
   document.addEventListener('change', (event) => {
     const target = event.target;
     if (target.matches('.todo__state')) {
       const name = target.closest('.todo').querySelector('.todo__text').textContent;
       const checked = target.checked;
-
       // Update the checked status of the habit in Firestore
       dbRef.where("name", "==", name).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -215,6 +213,17 @@ function loadCheckedFromFirestore() {
     });
   });
 }
+//be called immediately after the page is loaded
+window.onload = function () {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loadCheckedFromFirestore();
+    }
+  })
+};
+
+
+
 //   //check the time difference from last_checked and current time
 //   dbRef.where("name", "==", name).get().then((querySnapshot) => {
 //     querySnapshot.forEach((doc) => {
@@ -227,14 +236,3 @@ function loadCheckedFromFirestore() {
 //     });
 //   });
 // }
-
-
-//be called immediately after the page is loaded
-window.onload = function () {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      loadCheckedFromFirestore();
-    }
-  })
-};
-
