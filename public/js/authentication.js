@@ -4,18 +4,18 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-      var user = authResult.user;                            // get the user object from the Firebase authentication database
-      if (authResult.additionalUserInfo.isNewUser) {         //if new user
+      // get the user object from the Firebase authentication database
+      var user = authResult.user;
+      //if the user is new                 
+      if (authResult.additionalUserInfo.isNewUser) {
         const newUserRef = db.collection("users").doc(user.uid);
         const batch = db.batch();
-
         // Create the user document
         batch.set(newUserRef, {
           name: user.displayName,
           email: user.email
         });
-
-        // Create the habits sub-collection
+        // Create the habits sub-collection, with default habits
         const habitsRef = newUserRef.collection("habits");
         batch.set(habitsRef.doc(), {
           name: "Ride a bike🚴",
@@ -75,13 +75,7 @@ var uiConfig = {
   signInFlow: "popup",
   signInSuccessUrl: "main.html",
   signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    // firebase.auth.GithubAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
   ],
   // Terms of service url.
   tosUrl: "<your-tos-url>",

@@ -1,3 +1,4 @@
+//to insert username from database
 function insertName() {
   firebase.auth().onAuthStateChanged((user) => {
     // Check if a user is signed in:

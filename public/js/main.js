@@ -1,4 +1,6 @@
 const habitList = document.querySelector('.todo-list');
+
+//The add habit button
 const addHabitButton = document.querySelector('.todo__add');
 addHabitButton.style.display = 'flex';
 addHabitButton.style.alignItems = 'center';
