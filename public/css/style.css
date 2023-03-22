@@ -266,9 +266,16 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 #index-heading2 {
   padding-top: 20px;
-  padding-bottom: 35px;
+  padding-bottom: 15px;
   font-size: 20pt;
+  color: rgb(72, 72, 72);
+}
+
+#index-description {
+  margin-bottom: 40px;
+  font-size: 13pt;
   color: rgb(104, 104, 104);
+
 }
 
 #get-started-button {
@@ -377,7 +384,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
   #index-heading2 {
     padding-top: 15px;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
     font-size: 18pt;
   }
 }
