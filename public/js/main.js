@@ -219,11 +219,12 @@ function loadCheckedFromFirestore() {
 window.onload = function () {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      resetCheckedStatus();
-      loadCheckedFromFirestore();
+      loadCheckedFromFirestore()
+        .then(() => resetCheckedStatus());
     }
   })
 };
+
 
 
 function resetCheckedStatus() {
