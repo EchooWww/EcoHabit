@@ -219,22 +219,39 @@ function loadCheckedFromFirestore() {
 window.onload = function () {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      resetCheckedStatus();
       loadCheckedFromFirestore();
     }
   })
 };
 
 
+function resetCheckedStatus() {
+  const user = firebase.auth().currentUser;
+  const dbRef = db.collection('users').doc(user.uid).collection('habits');
 
-//   //check the time difference from last_checked and current time
-//   dbRef.where("name", "==", name).get().then((querySnapshot) => {
-//     querySnapshot.forEach((doc) => {
-//       const data = doc.data(); // retrieve the field-value pairs for the document
-//       const lastUpdated = data.last_checked.toDate(); // convert the Firestore timestamp to a Date object
-//       const currentTime = new Date(); // create a new Date object with the current system time
-//       const timeDifference = currentTime.getTime() - lastUpdated.getTime(); // calculate the time difference in milliseconds
-//       const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // calculate the day difference
-//       console.log(`The document was last updated ${dayDifference} days ago.`);
-//     });
-//   });
-// }
+  // Get the latest checked habit
+  dbRef.where('checked', '==', true)
+    .orderBy('last_checked', 'desc')
+    .limit(1)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const lastCheckedDate = doc.data().last_checked.toDate();
+        const now = new Date();
+        // Check if the current date is greater than the date of the latest checked habit
+        if (now > new Date(lastCheckedDate.getFullYear(), lastCheckedDate.getMonth(), lastCheckedDate.getDate())) {
+          // Reset all checked habits to unchecked
+          dbRef.where('checked', '==', true)
+            .get()
+            .then((querySnapshot) => {
+              querySnapshot.forEach((doc) => {
+                doc.ref.update({
+                  checked: false
+                });
+              });
+            });
+        }
+      });
+    });
+}

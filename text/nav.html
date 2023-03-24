@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"><!-- -------------------------
+<html lang="en">
+
+<!----------------------------
 ------------Sidebar-----------
--------------------------- -->
+------------------------------>
 <div class="header"></div>
 <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
 <label for="openSidebarMenu" class="sidebarIconToggle">
@@ -20,12 +22,12 @@
 </div>
 
 
-<!-- -------------------------
+<!----------------------------
 ------------Navbar------------
--------------------------- -->
+----------------------------->
 <div class="bottom-nav">
   <a href="/main.html" class="nav-item" data-icon="/img/home"><img src="/img/home-active.svg"></a>
-  <a href="/stats.html" class="nav-item achivement" data-icon="/img/stats"><img src="/img/stats.svg"></a>
+  <a href="/stats.html" class="nav-item" data-icon="/img/stats"><img src="/img/stats.svg"></a>
   <a href="/chat.html" class="nav-item" data-icon="/img/learn"><img src="/img/learn.svg"></a>
   <!-- <a href="../profile.html" class="nav-item" data-icon="/img/profile"><img src="/img/profile.svg"></a> -->
 </div>
@@ -39,15 +41,12 @@
     icon.addEventListener('click', () => {
       // store the index of the clicked icon in local storage
       localStorage.setItem('activeIconIndex', index);
-
       // remove the active class from all icons
       icons.forEach((icon) => {
         icon.classList.remove('active');
       });
-
       // add the active class to the clicked icon
       icon.classList.add('active');
-
     });
   });
 
