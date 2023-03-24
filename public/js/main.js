@@ -1,5 +1,19 @@
 const habitList = document.querySelector('.todo-list');
 
+//---------Front-end related functions--------//
+
+//show polar bear gifs randomly
+function randomImage() {
+  // array of image file names
+  const images = ["/img/sleep.gif", "/img/sleep-small-ice-interact.gif", "/img/sit-interact.gif", "/img/sit-small-ice-interact.gif", "/img/sit-small-ice.gif", "/img/sit.gif", "/img/sleep-interaction.gif", "/img/sleep-small-ice.gif"];
+  // generate a random index
+  const randomIndex = Math.floor(Math.random() * images.length);
+  // get the image element
+  const myImage = document.getElementById("polarbear");
+  // set the source of the image element to the randomly selected image 
+  myImage.src = images[randomIndex];
+}
+
 //The add habit button
 const addHabitButton = document.querySelector('.todo__add');
 addHabitButton.style.display = 'flex';
@@ -44,7 +58,7 @@ addHabitButton.addEventListener('click', () => {
   });
 });
 
-//add habit items to the front end habit list
+//add habit items to the front-end habit list dynamically
 function addHabitItem(name, id) {
   // Creates list items
   const habitItem = document.createElement('label');
@@ -128,9 +142,10 @@ function addHabitItem(name, id) {
   habitItem.appendChild(deleteButton);
   habitList.appendChild(habitItem); // Add created list-item to array "habitList"
 }
+//--------------Front-end ends----------------//
 
 
-
+//---------Firestore related functions--------//
 // Load the user's habit list from firestore and call it immediately
 function loadHabitsFromFirestore() {
   firebase.auth().onAuthStateChanged(function (user) {
@@ -215,18 +230,8 @@ function loadCheckedFromFirestore() {
     });
   });
 }
-//be called immediately after the page is loaded
-window.onload = function () {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      loadCheckedFromFirestore()
-        .then(() => resetCheckedStatus());
-    }
-  })
-};
 
-
-
+//reset the checked status to false if user opens EcoHabit a day after the last habit is checked
 function resetCheckedStatus() {
   const user = firebase.auth().currentUser;
   const dbRef = db.collection('users').doc(user.uid).collection('habits');
@@ -256,3 +261,17 @@ function resetCheckedStatus() {
       });
     });
 }
+
+//-----------------Firestore ends----------------//
+
+
+//call some functions immediately after the page is loaded
+window.onload = function () {
+  randomImage()
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loadCheckedFromFirestore()
+        .then(() => resetCheckedStatus());
+    }
+  })
+};
