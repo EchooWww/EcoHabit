@@ -174,7 +174,8 @@ function saveHabitsToFirestore() {
         count: 0,
         continious_count: 0,
         last_checked: null,
-        checked: false
+        checked: false,
+        checked_dates: []
       }).then(() => {
         console.log('Habit added to Firestore');
       }).catch((error) => {
@@ -195,7 +196,7 @@ function saveHabitsToFirestore() {
 }
 
 //The function to load and update habit status
-function loadCheckedFromFirestore() {
+function syncCheckedWithFirestore() {
   const user = firebase.auth().currentUser;
   const dbRef = db.collection('users').doc(user.uid).collection('habits');
   // Attach a "change" event listener to the parent element of all .todo__state checkboxes
@@ -204,12 +205,27 @@ function loadCheckedFromFirestore() {
     if (target.matches('.todo__state')) {
       const name = target.closest('.todo').querySelector('.todo__text').textContent;
       const checked = target.checked;
+      const habitRef = dbRef.where('name', '==', name).limit(1);
+
       // Update the checked status of the habit in Firestore
-      return dbRef.where("name", "==", name).get().then((querySnapshot) => {
+      habitRef.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+          const habit = doc.data();
+          const checked_dates = habit.checked_dates || [];
+
+          // Add or remove current date from checked_dates array based on checked status
+          if (checked) {
+            checked_dates.push(firebase.firestore.Timestamp.now());
+          } else {
+            const index = checked_dates.indexOf(habit.last_checked);
+            if (index > -1) {
+              checked_dates.splice(index, 1);
+            }
+          }
           doc.ref.update({
             checked: checked,
             count: firebase.firestore.FieldValue.increment(checked ? 1 : -1),
+            checked_dates: checked_dates,
             ...(checked && { last_checked: firebase.firestore.Timestamp.now() })
           });
         });
@@ -272,7 +288,7 @@ window.onload = function () {
   randomImage();
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      loadCheckedFromFirestore();
+      syncCheckedWithFirestore();
       resetCheckedStatus();
     }
   });
