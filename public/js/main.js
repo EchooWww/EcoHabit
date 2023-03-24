@@ -205,7 +205,7 @@ function loadCheckedFromFirestore() {
       const name = target.closest('.todo').querySelector('.todo__text').textContent;
       const checked = target.checked;
       // Update the checked status of the habit in Firestore
-      dbRef.where("name", "==", name).get().then((querySnapshot) => {
+      return dbRef.where("name", "==", name).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           doc.ref.update({
             checked: checked,
@@ -246,7 +246,9 @@ function resetCheckedStatus() {
         const lastCheckedDate = doc.data().last_checked.toDate();
         const now = new Date();
         // Check if the current date is greater than the date of the latest checked habit
-        if (now > new Date(lastCheckedDate.getFullYear(), lastCheckedDate.getMonth(), lastCheckedDate.getDate())) {
+        if (now.getFullYear() > lastCheckedDate.getFullYear() ||
+          (now.getFullYear() == lastCheckedDate.getFullYear() && now.getMonth() > lastCheckedDate.getMonth()) ||
+          (now.getFullYear() == lastCheckedDate.getFullYear() && now.getMonth() == lastCheckedDate.getMonth() && now.getDate() > lastCheckedDate.getDate())) {
           // Reset all checked habits to unchecked
           dbRef.where('checked', '==', true)
             .get()
@@ -267,11 +269,14 @@ function resetCheckedStatus() {
 
 //call some functions immediately after the page is loaded
 window.onload = function () {
-  randomImage()
+  randomImage();
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      loadCheckedFromFirestore()
-        .then(() => resetCheckedStatus());
+      loadCheckedFromFirestore();
+      resetCheckedStatus();
     }
-  })
+  });
 };
+
+
+
