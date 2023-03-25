@@ -225,8 +225,7 @@ function syncCheckedWithFirestore() {
           doc.ref.update({
             checked: checked,
             count: firebase.firestore.FieldValue.increment(checked ? 1 : -1),
-            checked_dates: checked_dates,
-            ...(checked && { last_checked: firebase.firestore.Timestamp.now() })
+            checked_dates: checked_dates
           });
         });
       });
@@ -271,7 +270,8 @@ function resetCheckedStatus() {
             .then((querySnapshot) => {
               querySnapshot.forEach((doc) => {
                 doc.ref.update({
-                  checked: false
+                  checked: false,
+                  last_checked: checked_dates.slice(-1)[0]
                 });
               });
             });
