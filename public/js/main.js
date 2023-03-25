@@ -128,7 +128,7 @@ function addHabitItem(name, id) {
   boxUse.classList.add('todo__box');
   svg.appendChild(boxUse);
 
-  // Responsive animation when checkbox is checked
+  // Bear animation when checkbox is checked
    checkbox.addEventListener('change', function () {
     const myImage = document.getElementById("polarbear");
     if (this.checked) {
@@ -139,7 +139,7 @@ function addHabitItem(name, id) {
         //Delays by set milliseconds before switching back to original GIF
         setTimeout(function () {
           myImage.src = '/img/sleep.gif';
-        }, 800);
+        }, 700);
       } else if (randomIndex === 1) {
         //Checkbox is checked, so change to interaction GIF
         myImage.src = '/img/sit-interact.gif';
