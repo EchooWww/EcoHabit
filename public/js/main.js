@@ -3,11 +3,12 @@ const habitList = document.querySelector('.todo-list');
 //---------Front-end related functions--------//
 
 //show polar bear gifs randomly
+let randomIndex;
 function randomImage() {
   // array of image file names
-  const images = ["/img/sleep.gif", "/img/sleep-small-ice-interact.gif", "/img/sit-interact.gif", "/img/sit-small-ice-interact.gif", "/img/sit-small-ice.gif", "/img/sit.gif", "/img/sleep-interaction.gif", "/img/sleep-small-ice.gif"];
+  const images = ["/img/sleep.gif", "/img/sit.gif"];
   // generate a random index
-  const randomIndex = Math.floor(Math.random() * images.length);
+  randomIndex = Math.floor(Math.random() * images.length);
   // get the image element
   const myImage = document.getElementById("polarbear");
   // set the source of the image element to the randomly selected image 
@@ -127,6 +128,29 @@ function addHabitItem(name, id) {
   boxUse.classList.add('todo__box');
   svg.appendChild(boxUse);
 
+  // Responsive animation when checkbox is checked
+   checkbox.addEventListener('change', function () {
+    const myImage = document.getElementById("polarbear");
+    if (this.checked) {
+      // Checks to see if polarbear is sitting or sleeping
+      if (randomIndex === 0) {
+        //Checkbox is checked, so change to interaction GIF
+        myImage.src = '/img/sleep-interaction.gif';
+        //Delays by set milliseconds before switching back to original GIF
+        setTimeout(function () {
+          myImage.src = '/img/sleep.gif';
+        }, 800);
+      } else if (randomIndex === 1) {
+        //Checkbox is checked, so change to interaction GIF
+        myImage.src = '/img/sit-interact.gif';
+        //Delays by set milliseconds before switching back to original GIF
+        setTimeout(function () {
+          myImage.src = '/img/sit.gif';
+        }, 1300);
+      }
+    }  
+  });
+
   // Checkmark
   const checkUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
   checkUse.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#todo__check');
@@ -142,6 +166,7 @@ function addHabitItem(name, id) {
   habitItem.appendChild(deleteButton);
   habitList.appendChild(habitItem); // Add created list-item to array "habitList"
 }
+
 //--------------Front-end ends----------------//
 
 
