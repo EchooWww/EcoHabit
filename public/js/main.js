@@ -129,7 +129,7 @@ function addHabitItem(name, id) {
   svg.appendChild(boxUse);
 
   // Responsive animation when checkbox is checked
-   checkbox.addEventListener('change', function () {
+  checkbox.addEventListener('change', function () {
     const myImage = document.getElementById("polarbear");
     if (this.checked) {
       // Checks to see if polarbear is sitting or sleeping
@@ -148,7 +148,7 @@ function addHabitItem(name, id) {
           myImage.src = '/img/sit.gif';
         }, 1300);
       }
-    }  
+    }
   });
 
   // Checkmark
