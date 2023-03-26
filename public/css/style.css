@@ -11,6 +11,11 @@
   height: calc(100vh - 99px);
 }
 
+.stats-body-container {
+  margin-bottom: 100px;
+  overflow-y: scroll;
+}
+
 #user-profile-picture {
   float: left;
   margin-right: 15px;
@@ -775,6 +780,7 @@ element.style {
 #calendar {
   padding: 10%;
   margin: 5%;
+  /* backdrop-filter: blur(4px); */
 }
 
 /* ---------------------------------- */
@@ -813,7 +819,7 @@ element.style {
   font-size: 13pt;
 }
 
-@media (width > 800px) {
+@media (width > 1000px) {
   #about-us-container {
     margin-top: 50px;
     display: grid;
@@ -867,9 +873,10 @@ element.style {
   }
 }
 
-@media (width <=800px) {
+@media (width <=1000px) {
   #about-us-container {
     margin-top: 70px;
+    margin-bottom: 100px;
     font-weight: normal;
     display: grid;
     width: 100vw;
