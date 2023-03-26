@@ -4,10 +4,11 @@
 }
 
 .body-container {
-  margin-top: 7vh;
   margin-bottom: 100px;
-  overflow-y: hidden;
-  /* overflow-x: hidden; */
+  padding-bottom: 10px;
+  background-color: rgba(255, 255, 255);
+  overflow-y: scroll;
+  height: calc(100vh - 99px);
 }
 
 #user-profile-picture {
@@ -26,7 +27,6 @@
   width: 150px;
   height: auto;
 }
-
 
 /*------------------------------*/
 /*----------Scroll Bar----------*/
@@ -69,7 +69,7 @@
   height: 71px;
   margin: 0;
   z-index: 1000;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.041);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 #title {
@@ -93,6 +93,7 @@
   z-index: 1000;
   margin: 0;
   padding: 0;
+  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .bottom-nav img {
@@ -341,10 +342,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
       white,
       white,
       transparent);
-  /* -webkit-mask-image: url(/public/img/gradient-edges.svg);
-  mask-image: url(./public/img/gradient-edges.svg);
-  -webkit-mask-size: cover;
-  mask-size: cover; */
 }
 
 #gradient-edges {
@@ -434,13 +431,19 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 /*------------------------------*/
 /*-------------Main-------------*/
 /*------------------------------*/
-.body-container>img {
+#polarbear {
   width: 100vw;
+  margin-top: 50px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+#habit-list-items {
+  overflow-y: scroll;
 }
 
 .main-image {
-  padding-left: 15%;
-  padding-right: 15%;
+  /* padding-left: 15%;
+  padding-right: 15%; */
 }
 
 .todo-list {
