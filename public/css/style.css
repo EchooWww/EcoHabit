@@ -265,7 +265,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 #index-landing-page {
   display: grid;
-  height:85%;
+  height: 85%;
   grid-template-columns: 45% 55%;
   grid-template-rows: 100px auto;
   align-items: center;
