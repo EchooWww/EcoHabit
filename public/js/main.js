@@ -189,25 +189,35 @@ function loadHabitsFromFirestore() {
 loadHabitsFromFirestore();
 
 // Save the user's habit to firestore
-function saveHabitsToFirestore() {
+async function saveHabitsToFirestore() {
   const userID = firebase.auth().currentUser.uid;
   const dbRef = db.collection('users').doc(userID).collection('habits');
-  habitChanges.forEach((change) => {
+  for (const change of habitChanges) {
     if (change.type === 'add') {
-      dbRef.add({
-        name: change.name,
-        count: 0,
-        continious_count: 0,
-        last_checked: null,
-        checked: false,
-        checked_dates: []
-      }).then(() => {
-        console.log('Habit added to Firestore');
-      }).catch((error) => {
-        console.error('Error adding habit to Firestore: ', error);
-      });
+      // Check if habit with the same name already exists
+      const querySnapshot = await dbRef.where("name", "==", change.name).get();
+      if (querySnapshot.empty) {
+        // Add a new habit if it doesn't exist
+        try {
+          await dbRef.add({
+            name: change.name,
+            count: 0,
+            continuous_count: 0,
+            last_checked: null,
+            checked: false,
+            checked_dates: []
+          });
+          console.log('Habit added to Firestore');
+        } catch (error) {
+          console.error('Error adding habit to Firestore: ', error);
+        }
+      } else {
+        console.log('Habit with the same name already exists in Firestore');
+      }
     } else if (change.type === 'remove') {
-      dbRef.where("name", "==", change.name).get().then((querySnapshot) => {
+      // Remove habit with the same name
+      try {
+        const querySnapshot = await dbRef.where("name", "==", change.name).get();
         querySnapshot.forEach((doc) => {
           doc.ref.delete().then(() => {
             console.log('Habit removed from Firestore');
@@ -215,9 +225,11 @@ function saveHabitsToFirestore() {
             console.error('Error removing habit from Firestore: ', error);
           });
         });
-      });
+      } catch (error) {
+        console.error('Error querying Firestore: ', error);
+      }
     }
-  });
+  }
 }
 
 //The function to load and update habit status
