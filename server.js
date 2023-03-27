@@ -13,7 +13,6 @@ const config = new Configuration({
 
 const openai = new OpenAIApi(config);
 
-
 io.on("connection", (socket) => {
   console.log("a user connected");
 
