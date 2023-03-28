@@ -24,6 +24,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -49,6 +50,11 @@
 
   <nav id="headerPlaceholder"></nav>
 
+
+
+
+
+
   <!-- the body of your page goes here -->
   <div class="body-container">
 
@@ -61,11 +67,56 @@
         <p>Lets make a difference today</p>
       </div>
     </div>
-    <div className="App">
-      <Avatar src={url} sx={{ width: 100, height: 100 }} />
-      <input type="file" onChange={handleImageChange} />
-      <button onClick={handleSubmit}>Submit</button>
-  </div>
+
+    <div class="container text-center py-3">
+      <img id="mypic-goes-here" src="img/logo2.png" width=100 height=100/>
+      <input type="file" id="mypic-input" accept="image/*" />
+</div>
+
+<div class="container">
+  <h1>User Profile </h1>
+  <form>
+      <fieldset class="mb-3" id="personalInfoFields" disabled>
+          <!-- <div class="form-group py-5">                 
+              <div id="profile-container">              
+                  <img id="mypic-goes-here" src="" />   
+              </div>                                    
+              <input id="mypic-input" type="file">      
+          </div> -->
+          <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
+          </div>
+          <!-- <div class="form-group">
+              <label>Occupation</label>
+              <input type="text" id="schoolInput" class="form-control" placeholder="Enter your school">
+          </div> -->
+          <div class="form-group">
+              <label>City</label>
+              <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
+          </div>
+      </fieldset>
+      <div class="d-flex justify-content-end mt-5">
+          <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
+          <span style="width: 10px"></span>
+          <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+      </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </div>
 
@@ -79,7 +130,7 @@
   <script src="/js/authentication.js"></script>
   <script src="/js/common.js"></script>
   <script src="/js/profile.js"></script>
-  <script src="/js/firebase.js"></script>
+  <!-- <script src="/js/firebase.js"></script> -->
 
 
 </body>
