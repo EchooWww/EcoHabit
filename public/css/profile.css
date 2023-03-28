@@ -2,3 +2,7 @@
   background-image: url(/img/background.jpg);
 padding-bottom: 10%;
 }
+
+#mypic-goes-here {
+border-radius: 15px
+}
