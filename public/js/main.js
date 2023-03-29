@@ -89,7 +89,7 @@ function addHabitItem(name, id) {
   deleteButton.addEventListener('click', () => {
     Swal.fire({
       title: 'Remove the Habit',
-      text: `Are you sure to remove "${name}" from your habit list?`,
+      text: `Remove "${name}" from your habit list?`,
       showCancelButton: true,
       icon: 'warning',
       confirmButtonText: 'Yes',

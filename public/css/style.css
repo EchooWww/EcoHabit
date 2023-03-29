@@ -248,7 +248,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   margin-top: -9px;
 }
 
-.sidebar-items:hover {
+.sidebar-items:hover, #Logout:hover {
   font-weight: bolder;
   color: white;
   text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.336);

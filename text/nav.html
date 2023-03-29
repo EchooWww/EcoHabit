@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- Include SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.min.css" />
+<!-- Include SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.all.min.js"></script>
 <!----------------------------
 ------------Sidebar-----------
 ------------------------------>
@@ -16,8 +19,9 @@
   <ul class="sidebarMenuInner">
     <li><a href="/html/profile.html"><img src="/img/user-profile.jpg" alt="profile-picture"
           id="user-profile-picture">Hello, <span id="name-goes-here"></span></a></li>
+    <li><a href="/html/profile.html" class="sidebar-items">Profile</a></li>
     <li><a href="/html/aboutus.html" class="sidebar-items">About Us</a></li>
-    <li><a href="/html/index.html" class="sidebar-items">Log Out</a></li>
+    <li id="Logout">Log Out</li>
   </ul>
 </div>
 
@@ -59,6 +63,38 @@
     icons.forEach(icon => icon.querySelector('img').src = `${icon.dataset.icon}.svg`)
     icons[activeIconIndex].querySelector('img').src = `${icons[activeIconIndex].dataset.icon}-active.svg`;
   }
+
+
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      // Sign-out successful.
+      console.log("logging out user");
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+
+  const Logout = document.getElementById("Logout");
+  Logout.addEventListener('click', () => {
+    Swal.fire({
+      title: 'Log out',
+      text: `Are you sure to log out?`,
+      showCancelButton: true,
+      icon: 'warning',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        Swal.fire({
+          title: 'Success!',
+          text: `You have successfully logged out.`,
+          icon: 'success'
+        });
+        window.location.href = '/index.html'
+      }
+    });
+  });
 </script>
 
 </html>

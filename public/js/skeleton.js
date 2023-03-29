@@ -4,3 +4,4 @@ function loadSkeleton() {
   console.log($('#nonActiveNavbarPlaceholder').load('/nonactive-nav'));
 }
 loadSkeleton();
+
