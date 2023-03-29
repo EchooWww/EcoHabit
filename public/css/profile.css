@@ -1,8 +1,19 @@
 .container {
   background-image: url(/img/background.jpg);
+  background-size: contain;
 padding-bottom: 10%;
 }
 
 #mypic-goes-here {
-border-radius: 15px
+border-radius: 80px;
+}
+
+#name-goes-here {
+  font-weight: bold;
+  font-size: larger;
+}
+
+#profileupload {
+  background-image: none;
+  
 }

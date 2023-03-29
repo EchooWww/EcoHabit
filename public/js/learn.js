@@ -25,7 +25,7 @@ function displayLearnmoreInformation(){
         learnmoreCode = learnmoreInfo.code;
         learnmoreName = learnmoreInfo.name;
 
-        document.getElementById("learnmoreName").innerHTML=hikeName;
+        document.getElementById("learnmoreName").innerHTML=cardName;
         let imgEvent = document.querySelector( ".learnmore-img" );
         imgEvent.src = "../images/" + learnmoreCode + ".jpg";
     }

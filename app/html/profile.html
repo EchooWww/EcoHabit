@@ -60,28 +60,33 @@
 
     <div class="container-fluid bg-light text-dark p-5">
       <div class="container bg-light p-5">
-        <img src="/img/user-profile.jpg" alt="user profile" id="user-profile-picture">
-        <h1 class="display-4">Hello, <span id="name-goes-here"></span> </h1>
+              <h1>User Profile </h1>
+<img id="mypic-goes-here" src="img/logo2.png" width=150 height=150/>
 
-        <hr>
-        <p>Lets make a difference today</p>
+        <!-- <img src="/img/user-profile.jpg" alt="user profile" id="user-profile-picture"> -->
+        <h1 class="display-4"><span id="name-goes-here"></span> </h1>
+
+        <hr>  
       </div>
     </div>
+        <p>Insert div for daily quotes</p>
 
-    <div class="container text-center py-3">
-      <img id="mypic-goes-here" src="img/logo2.png" width=100 height=100/>
-      <input type="file" id="mypic-input" accept="image/*" />
-</div>
+
+
+
+
+
+
+
 
 <div class="container">
-  <h1>User Profile </h1>
   <form>
-      <fieldset class="mb-3" id="personalInfoFields" disabled>
+      <fieldset class="mb-3" id="personalInfoFields" >
            <div class="form-group py-5">                 
 
           <div class="form-group">
               <label>Name</label>
-              <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
+              <input type="text" id="name-goes-here" class="form-control" placeholder="Enter your name">
           </div>
           <div class="form-group">
               <label>City</label>
@@ -94,6 +99,10 @@
           <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
       </div>
   </form>
+      <div class="container" id="profileupload">
+      <!-- <img id="mypic-goes-here" src="img/logo2.png" width=100 height=100/> -->
+      <input type="file" id="mypic-input" accept="image/*" />
+</div>
 </div>
 
 
