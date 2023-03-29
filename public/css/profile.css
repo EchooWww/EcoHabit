@@ -1,19 +1,30 @@
-.container {
-  /* background-image: url(/img/background.jpg); */
-  background-size: contain;
+#picbackground {
+  background-image: url(/img/backgroundprofile.jpg); 
+  background-size:cover;
 padding-bottom: 10%;
+
 }
 
 #mypic-goes-here {
 border-radius: 80px;
+padding-top: 5%;
 }
 
 #name-goes-here {
   font-weight: bold;
-  font-size: larger;
+  font-size:large;
+  color: #2a7da9;
+  padding-left: 10%;
 }
 
-/* #profileupload {
-  background-image: none;
+.form-group {
+  color: #6096B4;
+}
 
-} */
+
+#quote-goes-here {
+  font-size:large;
+  background: -webkit-linear-gradient(#1f475d, #41abe9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
