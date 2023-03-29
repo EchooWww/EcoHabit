@@ -139,14 +139,14 @@ function addHabitItem(name, id) {
         //Delays by set milliseconds before switching back to original GIF
         setTimeout(function () {
           myImage.src = '/img/sleep.gif';
-        }, 700);
+        }, 1300);
       } else if (randomIndex === 1) {
         //Checkbox is checked, so change to interaction GIF
         myImage.src = '/img/sit-interact.gif';
         //Delays by set milliseconds before switching back to original GIF
         setTimeout(function () {
           myImage.src = '/img/sit.gif';
-        }, 1300);
+        }, 1400);
       }
     }
   });
