@@ -1,30 +1,109 @@
-#picbackground {
-  background-image: url(/img/backgroundprofile.jpg); 
-  background-size:cover;
-padding-bottom: 10%;
-
-}
-
-#mypic-goes-here {
-border-radius: 80px;
-padding-top: 5%;
-}
-
-#name-goes-here {
+#name-goes-here1 {
   font-weight: bold;
-  font-size:large;
+  font-size: 20pt;
   color: #2a7da9;
-  padding-left: 10%;
 }
 
-.form-group {
-  color: #6096B4;
+.profile-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 20pt;
+  color: #93BFCF;
 }
 
 
 #quote-goes-here {
-  font-size:large;
-  background: -webkit-linear-gradient(#1f475d, #41abe9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: large;
+}
+
+.material-symbols-outlined {
+  position: relative;
+  top: -60px;
+  left: 55px;
+  background-color: white;
+  color: black;
+  padding: 0.25rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.profile-body {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 150px;
+  background-color: transparent;
+}
+
+button {
+  background-color: #93bfcf;
+  color: white;
+}
+
+#quote-goes-here {
+  font-weight: 100;
+  font-size: 1rem;
+  line-height: 1.4;
+  position: relative;
+  margin: auto;
+}
+
+.quote {
+  padding: .5rem;
+  justify-content: center;
+  color: #3f3f5a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15vw;
+  text-align: left;
+}
+
+#quote-goes-here:before,
+#quote-goes-here:after {
+  position: absolute;
+  color: #93bfcf;
+  font-size: 8rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.form-group {
+  text-align: left;
+  margin-left: 15%;
+  color: #2a7da9;
+
+}
+
+
+#quote-goes-here:before {
+  content: '“';
+  left: -5rem;
+  top: -5rem;
+}
+
+#saveButton {
+  background-color: #6096b4;
+  border: #6096b4;
+}
+
+#saveButton:hover {
+  background-color: #93BFCF;
+}
+
+#quote-goes-here:after {
+  content: '”';
+  right: -12rem;
+  bottom: 0rem;
 }

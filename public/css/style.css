@@ -446,11 +446,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   overflow-y: scroll;
 }
 
-.main-image {
-  /* padding-left: 15%;
-  padding-right: 15%; */
-}
-
 .todo-list {
   background: #fff;
   padding: 0.5em 1em;
@@ -660,7 +655,7 @@ element.style {
 }
 
 /*------------------------------*/
-/*----------Learn More----------*/
+/*----------Chat----------*/
 /*------------------------------*/
 
 .card {
@@ -678,14 +673,6 @@ element.style {
   border-radius: 5px;
 }
 
-.body-container-learnmore {
-  display: grid;
-  grid-template-columns: 100%;
-  justify-content: center;
-  align-items: top;
-  /* overflow-y: scroll; */
-  border-radius: 10px;
-}
 
 .conversation-window {
   flex-grow: 1;
@@ -771,7 +758,7 @@ element.style {
 }
 
 
-/* learn more end*/
+/* chat end*/
 
 /*------------------------------*/
 /*-------------Stats------------*/
