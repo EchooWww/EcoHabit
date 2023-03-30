@@ -69,7 +69,7 @@ function updateUserInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         const userName = document.getElementById('nameInput').value;
         const userCity = document.getElementById('cityInput').value;
-
+        const userEmail = document.getElementById('emailInput').value;
         if (ImageFile) { // if new image is selected
             const storageRef = storage.ref().child(`images/${user.uid}.${ImageFile.name.split('.').pop()}`);
             const uploadTask = storageRef.put(ImageFile);
@@ -81,6 +81,7 @@ function updateUserInfo() {
                     db.collection("users").doc(user.uid).update({
                         name: userName,
                         city: userCity,
+                        email: userEmail,
                         profilePic: downloadURL
                     }).then(function () {
                         console.log('Saved user profile info with new image');
