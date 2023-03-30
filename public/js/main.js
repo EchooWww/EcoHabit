@@ -262,7 +262,8 @@ function syncCheckedWithFirestore() {
           doc.ref.update({
             checked: checked,
             count: firebase.firestore.FieldValue.increment(checked ? 1 : -1),
-            checked_dates: checked_dates
+            checked_dates: checked_dates,
+            last_checked: checked_dates.slice(-1)[0]
           });
         });
       });
@@ -295,23 +296,26 @@ function resetCheckedStatus() {
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        const lastCheckedDate = doc.data().last_checked.toDate();
-        const now = new Date();
-        // Check if the current date is greater than the date of the latest checked habit
-        if (now.getFullYear() > lastCheckedDate.getFullYear() ||
-          (now.getFullYear() == lastCheckedDate.getFullYear() && now.getMonth() > lastCheckedDate.getMonth()) ||
-          (now.getFullYear() == lastCheckedDate.getFullYear() && now.getMonth() == lastCheckedDate.getMonth() && now.getDate() > lastCheckedDate.getDate())) {
-          // Reset all checked habits to unchecked
-          dbRef.where('checked', '==', true)
-            .get()
-            .then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                doc.ref.update({
-                  checked: false,
-                  last_checked: checked_dates.slice(-1)[0]
+        if (doc.data().last_checked) {
+          console.log(doc.data().last_checked);
+          const lastCheckedDate = doc.data().last_checked.toDate();
+          const now = new Date();
+          // Check if the current date is greater than the date of the latest checked habit
+          if (now.getFullYear() > lastCheckedDate.getFullYear() ||
+            (now.getFullYear() == lastCheckedDate.getFullYear() && now.getMonth() > lastCheckedDate.getMonth()) ||
+            (now.getFullYear() == lastCheckedDate.getFullYear() && now.getMonth() == lastCheckedDate.getMonth() && now.getDate() > lastCheckedDate.getDate())) {
+            // Reset all checked habits to unchecked
+            dbRef.where('checked', '==', true)
+              .get()
+              .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                  doc.ref.update({
+                    checked: false,
+                    last_checked: checked_dates.slice(-1)[0]
+                  });
                 });
               });
-            });
+          }
         }
       });
     });
