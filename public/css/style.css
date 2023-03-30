@@ -317,7 +317,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 }
 
 #get-started-button:hover {
-  /* box-shadow: 0 0 10px 2px #ffffff9d; */
   scale: 1.04;
 }
 
@@ -656,7 +655,7 @@ element.style {
 }
 
 /*------------------------------*/
-/*----------Chat----------*/
+/*--------------Chat------------*/
 /*------------------------------*/
 
 .card {
