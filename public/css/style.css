@@ -779,6 +779,7 @@ element.style {
   height: 130px;
   border-radius: 50%;
   margin-bottom: 20px;
+  box-shadow: 0 0px 8px rgba(24, 24, 24, 0.3);
 }
 
 .member-cards:hover {
@@ -885,7 +886,7 @@ element.style {
   .member-cards {
     display: grid;
     grid-template-columns: 25% 75%;
-    grid-template-rows: 33% 67%;
+    grid-template-rows: 100%;
     margin: 12px;
     padding: 10px 0px 10px 10px;
     height: 150px;
@@ -904,18 +905,18 @@ element.style {
 
   .member-pics {
     grid-column: 1;
-    grid-row: 1 / span 2;
-    height: 70%;
+    grid-row: 1;
+    height: 75%;
     width: auto;
-    margin-left: 20px;
+    margin: 20px 0px 20px 50px;
   }
 
   .member-name {
     grid-column: 2;
   }
 
-  .member-description {
+  /* .member-description {
     grid-column: 2;
     font-size: 10pt;
-  }
+  } */
 }
