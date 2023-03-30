@@ -47,6 +47,9 @@ function populateInfo() {
                     if (picUrl != null) {
                         console.log(picUrl);
                         $("#mypic-goes-here").attr("src", picUrl);
+                        $("#user-profile-picture").attr("src", picUrl);
+                        $("#user-profile-picture1").attr("src", picUrl);
+
                     }
                     else
                         console.log("picURL is null");

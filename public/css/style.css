@@ -16,11 +16,12 @@
   overflow-y: scroll;
 }
 
-#user-profile-picture {
+#user-profile-picture, #user-profile-picture1 {
   float: left;
   margin-right: 15px;
   border-radius: 50%;
   height: 50px;
+  width: 50px;
 }
 
 #openSidebarMenu {

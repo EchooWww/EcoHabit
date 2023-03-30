@@ -62,4 +62,28 @@
       }
     });
   });
+  function populateInfo() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        currentUser = db.collection("users").doc(user.uid);
+        currentUser.get()
+          .then(userDoc => {
+            let picUrl = userDoc.data().profilePic;
+            if (picUrl != null) {
+              console.log(picUrl);
+              $("#user-profile-picture").attr("src", picUrl);
+              $("#user-profile-picture1").attr("src", picUrl);
+
+            }
+            else
+              console.log("picURL is null");
+          })
+
+      } else {
+        console.log("no user is logged in")
+      }
+    }
+    )
+  }
+  populateInfo();
 </script>
