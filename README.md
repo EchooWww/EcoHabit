@@ -41,7 +41,7 @@ What we'd like to build in the future:
 	
 ## 7. Contents of Folder
 Content of the project folder:
-
+```bash
 Top level of project folder: 
 ├── .gitignore               # Git ignore file
 ├── package.json             # Json file to manage dependencies and scripts for the project.
@@ -49,12 +49,11 @@ Top level of project folder:
 ├── server.js                # The server-side js for the project.
 └── README.md                # The read me file 
 
-It has the following subfolders and files:
+Subfolders and files:
     ├── app                     # Contains the HTML files for the different pages of the app
     │   └── html
     │       ├── aboutus.html    # About Us page
     │       ├── chat.html       # Chat page
-    │       ├── chatbot.html    # Chatbot page
     │       ├── index.html      # Home page
     │       ├── login.html      # Login page
     │       ├── main.html       # Main page
@@ -80,4 +79,4 @@ It has the following subfolders and files:
         ├── header.html         # HTML file for the header
         ├── nav.html            # HTML file for the navigation
         └── nonactive-nav.html  # HTML file for the non-active navigation
-
+```
