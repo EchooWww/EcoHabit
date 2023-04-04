@@ -40,42 +40,41 @@ What we'd like to build in the future:
 * More interactions with the polar bear
 	
 ## 7. Contents of Folder
+* Top level of project folder:
+    * .gitignore               # Git ignore file
+    * package.json             # Json file to manage dependencies and scripts for the project.
+    * package-lock.json        # Contains the version of the installed packages
+    * server.js                # The server-side js for the project.
+    * README.md                # The read me file 
 
-Top level of project folder: 
-- .gitignore               # Git ignore file
-- package.json             # JSON file to manage dependencies and scripts 
-- package-lock.json        # Contains the version of the installed packages
-- server.js                # Server-side JS for the project
-- README.md                # Readme file for the project
-
-Content in lower levels:
-- app                      # Contains HTML files for pages of the app
-    - html
-        - aboutus.html     # About Us page
-        - chat.html        # Chat page
-        - chatbot.html     # Chatbot page
-        - index.html       # Home page
-        - login.html       # Login page
-        - main.html        # Main page
-        - profile.html     # Profile page
-        - README.md        # Readme file for the HTML files
-        - stats.html       # Stats page
-- public                   # Contains CSS and JS files for the app
-    - css
-        - style.css        # CSS file for styling the app
-        - profile.css      # CSS file for styling the profile page
-        - stats.css        # CSS file for styling the stats page
-    - js
-        - authentication.js # JS file for authentication
-        - chat.js          # JS file for chat functionality
-        - common.js        # JS file for common functionality
-        - index.js         # JS file for index page functionality
-        - main.js          # JS file for main page functionality
-        - profile.js       # JS file for profile page functionality
-        - scroll.js        # JS file for scroll functionality
-        - skeleton.js      # JS file for skeleton functionality
-        - stats.js         # JS file for stats page functionality
-- text                     # Contains HTML files for header and navigation
-    - header.html          # HTML file for the header
-    - nav.html             # HTML file for the navigation
-    - nonactive-nav.html   # HTML file for the non-active navigation
+* Subfolders and files:
+    * app                       # Contains the HTML files for the different pages of the app
+        * html
+            * aboutus.html      # About Us page
+            * chat.html         # Chat page
+            * chatbot.html      # Chatbot page
+            * index.html        # Home page
+            * login.html        # Login page
+            * main.html         # Main page
+            * profile.html      # Profile page
+            * README.md         # Readme file for the HTML files
+            * stats.html        # Stats page
+    * public                    # Contains the CSS and JS files for the app
+        * css
+            * style.css        # CSS file for styling the app
+            * profile.css      # CSS file for styling the profile page
+            * stats.css        # CSS file for styling the stats page
+        * js
+            * authentication.js # JS file for authentication
+            * chat.js           # JS file for chat functionality
+            * common.js         # JS file for common functionality
+            * index.js          # JS file for index page functionality
+            * main.js           # JS file for main page functionality
+            * profile.js        # JS file for profile page functionality
+            * scroll.js         # JS file for scroll functionality
+            * skeleton.js       # JS file for skeleton functionality
+            * stats.js          # JS file for stats page functionality
+    * text                      # Contains the HTML files for the header and navigation
+        * header.html           # HTML file for the header
+        * nav.html              # HTML file for the navigation
+        * nonactive-nav.html    # HTML file for the non-active navigation
