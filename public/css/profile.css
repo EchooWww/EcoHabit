@@ -15,6 +15,7 @@
   font-weight: bold;
   font-size: 20pt;
   color: #93BFCF;
+  margin-bottom: 35px;
 }
 
 
@@ -100,6 +101,7 @@ button {
 #saveButton {
   background-color: #6096b4;
   border: #6096b4;
+  margin-bottom: 200px;
 }
 
 #saveButton:hover {
