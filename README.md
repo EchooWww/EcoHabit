@@ -30,14 +30,13 @@ EcoHabit is an educational habit builder to help users make lifestyle changes th
 *  Edit your profile in your profile page.
 
 ## 5. Known Bugs and Limitations
-* ...
-* ...
-* ...
+* Adding habits would sometimes add duplicate documents in firebase.
+* The resetting function of habit sometimes doesn't work.
 
 ## 6. Features for Future
 What we'd like to build in the future:
 * Share stats with friends
-* Ranking
+* Achievement system
 * More interactions with the polar bear
 	
 ## 7. Contents of Folder

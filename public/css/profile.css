@@ -45,6 +45,10 @@
   background-color: transparent;
 }
 
+body {
+  overflow-y: scroll;
+}
+
 button {
   background-color: #93bfcf;
   color: white;
