@@ -4,14 +4,15 @@
 EcoHabit is an educational habit builder to help users make lifestyle changes that reduce their impact on climate change.
 
 ## 2. Names of Contributors
-* Azura L - 
-* Echo W - 
-* Kalvin L - 
+* Azura Lasai 
+* Echo Wang 
+* Kalvin Leung 
 	
 ## 3. Technologies and Resources Used
 * HTML, CSS, JavaScript
 * node.js
 * express.js
+* JQuery
 * Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
 * OpenAI API (for accessing AI model developed by OpenAI.)
@@ -53,13 +54,12 @@ Subfolders and files:
     ├── app                     # Contains the HTML files for the different pages of the app
     │   └── html
     │       ├── aboutus.html    # About Us page
-    │       ├── chat.html       # Chat page
-    │       ├── index.html      # Home page
+    │       ├── chat.html       # AI chat page
+    │       ├── index.html      # Landing page
     │       ├── login.html      # Login page
     │       ├── main.html       # Main page
     │       ├── profile.html    # Profile page
-    │       ├── README.md       # Readme file for the HTML files
-    │       └── stats.html      # Stats page
+    │       └── stats.html      # Calendar page
     ├── public                  # Contains the CSS and JS files for the app
     │   ├── css
     │   │   ├── style.css       # CSS file for styling the app
@@ -72,7 +72,7 @@ Subfolders and files:
     │       ├── index.js        # JS file for index page functionality
     │       ├── main.js         # JS file for main page functionality
     │       ├── profile.js      # JS file for profile page functionality
-    │       ├── scroll.js       # JS file for scroll functionality
+    │       ├── scroll.js       # JS file for scroll functionality in chat.html
     │       ├── skeleton.js     # JS file for skeleton functionality
     │       └── stats.js        # JS file for stats page functionality
     └── text                    # Contains the HTML files for the header and navigation
