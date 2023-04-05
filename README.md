@@ -39,6 +39,8 @@ What we'd like to build in the future:
 * Share stats with friends
 * Achievement system
 * More interactions with the polar bear
+* Be able to to recieve notifications or reminders
+* Tailor the AI to give information and suggestions based on the environment
 	
 ## 7. Contents of Folder
 Content of the project folder:
