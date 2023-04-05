@@ -48,7 +48,7 @@ For Windows:
 ```
 
 - Generate your own OpenAI API key at https://platform.openai.com/account/api-keys, and insert it in the.env file after the equal sign.
-- Run the server file in your cmd / terminal
+- Run the following node command in your cmd / terminal:
 
 ```bash
     node server.js
@@ -123,8 +123,8 @@ Subfolders and files:
     │   │   ├── kalvin.png              # About us profile picture
     │   │   ├── learn-active.svg        # Active Learn icon         Source: https://www.figma.com/community/file/1131020085382116914/20-Mobile-Bottom-Navigation-Bar
     │   │   ├── learn.svg               # Inactive Learn icon       Source: https://www.figma.com/community/file/1131020085382116914/20-Mobile-Bottom-Navigation-Bar
-    │   │   ├── logo-bear.png               # Polar bear logo        Source: https://vectorified.com/download-image#polar-bear-icon-34.png
-    │   │   ├── logo-app.png               # EcoHabit logo
+    │   │   ├── logo-bear.png           # Polar bear logo        Source: https://vectorified.com/download-image#polar-bear-icon-34.png
+    │   │   ├── logo-app.png            # EcoHabit logo
     │   │   ├── Screen1.png             # Phone mockup #1
     │   │   ├── Screen2.png             # Phone mockup #2
     │   │   ├── Screen3.png             # Phone mockup #3
