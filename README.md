@@ -134,7 +134,7 @@ Subfolders and files:
     │   │   ├── sleep.gif               # Sleeping bear gif
     │   │   ├── stats-active.svg        # Active stats icon         Source: https://www.figma.com/community/file/1131020085382116914/20-Mobile-Bottom-Navigation-Bar
     │   │   ├── stats.svg               # Inactive stats icon       Source: https://www.figma.com/community/file/1131020085382116914/20-Mobile-Bottom-Navigation-Bar
-    │   │   └── user-profile.png        # Default profile picture   Source:
+    │   │   └── user-profile.png        # Default profile picture   Source: https://www.figma.com/community/file/1131020085382116914/20-Mobile-Bottom-Navigation-Bar
     └── text                    # Contains the HTML files for the header and navigation
         ├── header.html         # HTML file for the header
         ├── nav.html            # HTML file for the navigation
