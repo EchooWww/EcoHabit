@@ -28,7 +28,7 @@ EcoHabit is an educational habit builder to help users make lifestyle changes th
 * Add or remove habits to your habit list, keep track of it everyday.
 * See your history stats in the stats page.
 * Learn more knowledge about green habits and climate change in the chatbot page.
-*  Edit your profile in your profile page.
+* Edit your profile in your profile page.
 
 ## 5. Known Bugs and Limitations
 * Adding habits would sometimes add duplicate documents in firebase.
@@ -39,6 +39,7 @@ What we'd like to build in the future:
 * Share stats with friends
 * Achievement system
 * More interactions with the polar bear
+* Media queries for web browsers with wider resolutions
 	
 ## 7. Contents of Folder
 Content of the project folder:
@@ -65,16 +66,17 @@ Subfolders and files:
     │   │   ├── style.css       # CSS file for styling the app
     │   │   ├── profile.css     # CSS file for styling the profile page
     │   │   └── stats.css       # CSS file for styling the stats page
-    │   └── js
-    │       ├── authentication.js   # JS file for authentication
-    │       ├── chat.js         # JS file for chat functionality
-    │       ├── common.js       # JS file for common functionality
-    │       ├── index.js        # JS file for index page functionality
-    │       ├── main.js         # JS file for main page functionality
-    │       ├── profile.js      # JS file for profile page functionality
-    │       ├── scroll.js       # JS file for scroll functionality in chat.html
-    │       ├── skeleton.js     # JS file for skeleton functionality
-    │       └── stats.js        # JS file for stats page functionality
+    │   ├── js
+    │   │   ├── authentication.js   # JS file for authentication
+    │   │   ├── chat.js         # JS file for chat functionality
+    │   │   ├── common.js       # JS file for common functionality
+    │   │   ├── index.js        # JS file for index page functionality
+    │   │   ├── main.js         # JS file for main page functionality
+    │   │   ├── profile.js      # JS file for profile page functionality
+    │   │   ├── scroll.js       # JS file for scroll functionality in chat.html
+    │   │   ├── skeleton.js     # JS file for skeleton functionality
+    │   │   └── stats.js        # JS file for stats page functionality
+    │   └── img
     └── text                    # Contains the HTML files for the header and navigation
         ├── header.html         # HTML file for the header
         ├── nav.html            # HTML file for the navigation
