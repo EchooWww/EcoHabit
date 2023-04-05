@@ -20,10 +20,30 @@ EcoHabit is an educational habit builder to help users make lifestyle changes th
 
 ## 4. Complete setup/installion/usage
 * Run the following commands on your cmd / terminal:
-     npm init
-     npm install
-     node server.js
-*    and open http://localhost:8080/
+```bash     
+    npm i 
+```
+```bash
+    npm install
+```
+* Add a ```.env``` file to the root directory, and insert the following code. 
+    
+For Mac OS:
+```javascript
+    export OPEN_AI_KEY=
+```  
+For Windows:
+
+```javascript
+    set OPEN_AI_KEY=
+```
+
+* Generate your own OpenAI API key at https://platform.openai.com/account/api-keys, and insert it in the.env file after the equal sign.
+* Run the server file in your cmd / terminal
+```bash
+    node server.js
+```
+* open http://localhost:8080/
 * Create an account or login with your email address and password, and you will be redirected to the main page of EcoHabit.
 * Add or remove habits to your habit list, keep track of it everyday.
 * See your history stats in the stats page.
