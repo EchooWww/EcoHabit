@@ -61,7 +61,7 @@ Subfolders and files:
     │       ├── main.html       # Main page
     │       ├── profile.html    # Profile page
     │       └── stats.html      # Calendar page
-    ├── public                  # Contains the CSS and JS files for the app
+    ├── public                  # Contains the CSS, JS, and image files for the app
     │   ├── css
     │   │   ├── style.css       # CSS file for styling the app
     │   │   ├── profile.css     # CSS file for styling the profile page
@@ -77,6 +77,32 @@ Subfolders and files:
     │   │   ├── skeleton.js     # JS file for skeleton functionality
     │   │   └── stats.js        # JS file for stats page functionality
     │   └── img
+    │   │   ├── apple-touch-icon.png    # Polar bear icon           Source: 
+    │   │   ├── Azura.jpeg              # About us profile picture
+    │   │   ├── background.jpg          # Background image          Source: https://coolwallpapers.me/2638488-mountains.html
+    │   │   ├── backgroundprofile.jpg   # Profile background image  Source: https://coolwallpapers.me/2638488-mountains.html
+    │   │   ├── Echo.jpeg               # About us profile picture
+    │   │   ├── favicon-16x16.png       # Favicon icon              Source: 
+    │   │   ├── favicon-32x32.png       # Favicon icon              Source: 
+    │   │   ├── favicon.png             # Favicon icon              Source: 
+    │   │   ├── home-active.svg         # Active Home icon          Source: 
+    │   │   ├── home.svg                # Inactive Home icon        Source: 
+    │   │   ├── kalvin.png              # About us profile picture
+    │   │   ├── learn-active.svg        # Active Learn icon         Source: 
+    │   │   ├── learn.svg               # Inactive Learn icon       Source: 
+    │   │   ├── logo.png                # Polar bear logo           Source: 
+    │   │   ├── logo2.png               # Polar bear logo #2        Source: https://vectorified.com/download-image#polar-bear-icon-34.png
+    │   │   ├── logo3.png               # EcoHabit logo
+    │   │   ├── Screen1.png             # Phone mockup #1
+    │   │   ├── Screen2.png             # Phone mockup #2
+    │   │   ├── Screen3.png             # Phone mockup #3
+    │   │   ├── sit-interact.gif        # Active sitting bear gif
+    │   │   ├── sit.gif                 # Sitting bear gif
+    │   │   ├── sleep-interaction.gif   # Active sleeping bear gif
+    │   │   ├── sleep.gif               # Sleeping bear gif
+    │   │   ├── stats-active.svg        # Active stats icon         Source:
+    │   │   ├── stats.svg               # Inactive stats icon       Source:     
+    │   │   └── user-profile.png        # Default profile picture   Source:
     └── text                    # Contains the HTML files for the header and navigation
         ├── header.html         # HTML file for the header
         ├── nav.html            # HTML file for the navigation
