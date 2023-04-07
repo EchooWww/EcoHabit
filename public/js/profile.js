@@ -10,13 +10,11 @@ function uploadFile() {
         var blob = URL.createObjectURL(ImageFile);
         image.src = blob;
     });
-
     const addPhotoButton = document.getElementById("add-photo-button");
     addPhotoButton.addEventListener("click", function () {
         fileInput.click();
     });
 }
-
 uploadFile();
 
 
@@ -30,7 +28,6 @@ function populateInfo() {
                     let userName = userDoc.data().name;
                     let userCity = userDoc.data().city;
                     let userEmail = userDoc.data().email;
-
                     let picUrl = userDoc.data().profilePic;
 
                     if (userName != null) {
@@ -49,28 +46,23 @@ function populateInfo() {
                         $("#mypic-goes-here").attr("src", picUrl);
                         $("#user-profile-picture").attr("src", picUrl);
                         $("#user-profile-picture1").attr("src", picUrl);
-
                     }
                     else
                         console.log("picURL is null");
                 })
-
-        } else {
-            console.log("no user is logged in")
-        }
+        } else {console.log("no user is logged in")}
     }
-
     )
-
 }
 populateInfo();
 
+//update user info changes to Firebase
 function updateUserInfo() {
     firebase.auth().onAuthStateChanged(function (user) {
         const userName = document.getElementById('nameInput').value;
         const userCity = document.getElementById('cityInput').value;
         const userEmail = document.getElementById('emailInput').value;
-        if (ImageFile) { // if new image is selected
+        if (ImageFile) { 
             const storageRef = storage.ref().child(`images/${user.uid}.${ImageFile.name.split('.').pop()}`);
             const uploadTask = storageRef.put(ImageFile);
 
@@ -112,8 +104,6 @@ function updateUserInfo() {
 }
 
 document.getElementById('saveButton').addEventListener('click', updateUserInfo);
-
-
 
 
 // Function to read the quote of the day from Firestore "quotes" collection

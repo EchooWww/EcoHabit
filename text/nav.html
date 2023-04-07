@@ -3,10 +3,6 @@
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-<!-- Include SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.min.css" />
-<!-- Include SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.all.min.js"></script>
 <!----------------------------
 ------------Sidebar-----------
 ------------------------------>
@@ -40,9 +36,11 @@
 </div>
 
 <script>
+  
+  // Functions to make the icon corresponding to current page highlighted
+  
   // get all the navigation bar icons
   const icons = document.querySelectorAll('.nav-item');
-
   // listen for clicks on each icon
   icons.forEach((icon, index) => {
     icon.addEventListener('click', () => {
@@ -56,10 +54,8 @@
       icon.classList.add('active');
     });
   });
-
   // get the index of the previously clicked icon from local storage
   const activeIconIndex = localStorage.getItem('activeIconIndex');
-
   // if there is an active icon index, set the corresponding icon to active
   if (activeIconIndex !== null) {
     icons[activeIconIndex].classList.add('active');
@@ -68,12 +64,12 @@
   }
 
 
+
+  //Log out function
   function logout() {
     firebase.auth().signOut().then(() => {
-      // Sign-out successful.
       console.log("logging out user");
     }).catch((error) => {
-      // An error happened.
     });
   }
 
@@ -99,6 +95,7 @@
     });
   });
 
+  //Populate user info from Firebase to sidebar
   function populateInfo() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {

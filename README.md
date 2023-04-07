@@ -101,7 +101,7 @@ Subfolders and files:
     │       └── stats.html      # Calendar page
     ├── public                  # Contains the CSS, JS, and image files for the app
     │   ├── css
-    │   │   ├── style.css       # CSS file for styling the app
+    │   │   ├── style.css       # CSS file for styling most pages of the app
     │   │   ├── profile.css     # CSS file for styling the profile page
     │   │   └── stats.css       # CSS file for styling the stats page
     │   ├── js
