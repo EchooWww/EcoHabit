@@ -23,14 +23,10 @@ EcoHabit is an educational habit builder to help users make lifestyle changes th
 
 ## 4. Complete setup/installion/usage
 
-- Run the following commands on your cmd / terminal:
+- Run the following command on your cmd / terminal:
 
 ```bash
     npm i
-```
-
-```bash
-    npm install
 ```
 
 - Add a `.env` file to the root directory, and insert the following code.

@@ -385,7 +385,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   #index-graphics {
     grid-column: 1;
     grid-row: 2;
-    /* -webkit-mask-image: url(/images/gradient-edges.svg); */
     mask-image: url(/images/gradient-edges.svg);
     -webkit-mask-size: cover;
     mask-size: cover;
@@ -451,7 +450,6 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   padding: 0.5em 1em;
   width: 100vw;
   overflow-x: hidden;
-  /* box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2); */
 }
 
 .todo {
@@ -713,7 +711,6 @@ element.style {
 
 .input-container {
   justify-content: space-between;
-  /* align-items: baseline; */
   position: absolute;
   bottom: 120px;
 }
@@ -724,19 +721,13 @@ element.style {
   grid-template-columns: auto 130px;
 }
 
-/* #messages {
-  margin-bottom: 0;
-} */
-
 #m {
-  /* flex-shrink: 1; */
   grid-column: 1;
   padding: 15px;
   font-size: 16px;
   border-radius: 4px 0 0 4px;
   border-style: solid;
   border-color: #93BFCF;
-  /* box-sizing: border-box; */
 }
 
 #send-message {
@@ -767,7 +758,6 @@ element.style {
 #calendar {
   padding: 10%;
   margin: 5%;
-  /* backdrop-filter: blur(4px); */
 }
 
 /* ---------------------------------- */
@@ -914,8 +904,4 @@ element.style {
     grid-column: 2;
   }
 
-  /* .member-description {
-    grid-column: 2;
-    font-size: 10pt;
-  } */
 }

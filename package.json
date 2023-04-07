@@ -20,9 +20,6 @@
   },
   "homepage": "https://github.com/ECHOOWWW/1800_202310_BBY14#readme",
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.14",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "openai": "^3.2.1",
