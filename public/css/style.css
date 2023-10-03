@@ -383,17 +383,17 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   }
 
   #index-graphics {
-    display:none;
+    display: none;
+    height: 0;
   }
 
   #index-landing-page-text {
     grid-column: 1;
-    grid-row: 3;
-    padding: 0;
-    margin-top: 35px;
+    grid-row: 2;
+    margin-top: 20%;
     margin-bottom: auto;
-    padding-left: 6%;
-    padding-right: 6%;
+    padding-left: 10%;
+    padding-right: 10%;
     text-align: center;
   }
 
