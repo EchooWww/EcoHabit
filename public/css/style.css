@@ -383,15 +383,7 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
   }
 
   #index-graphics {
-    grid-column: 1;
-    grid-row: 2;
-    mask-image: url(/images/gradient-edges.svg);
-    -webkit-mask-size: cover;
-    mask-size: cover;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-    margin-top: 10px;
+    display:none;
   }
 
   #index-landing-page-text {
